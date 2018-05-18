@@ -21,8 +21,9 @@
             add
           </i>
         </a>
-        <li *ngIf = 'action.subElement' >{{action.subElement}}</li>
-
+        <div *ngIf = "action.subElement" >
+        <li *ngFor="let act of action" >{{act.title}}</li>
+      </div>
       </ul>
     </div>
   </mat-card-content>
