@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { DataService } from '../../Services/data.service';
 import { Router } from "@angular/router";
 import { AddElementComponent } from '../add-element/add-element.component';
-import { AddElementType } from '../add-element-type';
+import { AddElementType,PatentType } from '../add-element-type';
 @Component({
   selector: 'app-new-patent',
   templateUrl: './new-patent.component.html',
@@ -46,8 +46,10 @@ export class NewPatentComponent implements OnInit {
   }
 
   submit(){
-    let values = new AddElementType(this.formgroup.value.title,this.formgroup.value.briefDescription,this.formgroup.value.features,this.formgroup.value.about,this.formgroup.value.figure,this.datasvc.Count);
+    let val = this.formgroup.value;
+    let values = new PatentType(val.email,val.inventorName,val.inventorPlace,val.inventionTitle,val.reference,val.dockerNumber,val.inventionType,val.problemDefinition,val.about,[]);
     console.log(values);
+    this.datasvc.CountPatent += 1;
     let length =  this.datasvc.data.push(values);
     this.router.navigate(['elementHome']);
   }

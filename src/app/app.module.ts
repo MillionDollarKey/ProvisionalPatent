@@ -14,9 +14,8 @@ import { AddSubElementComponent } from './Modules/add-sub-element/add-sub-elemen
 import { EditPatentComponent } from './Modules/edit-patent/edit-patent.component';
 import { ExportPatentComponent } from './Modules/export-patent/export-patent.component';
 import { HomeComponent } from './Modules/home/home.component';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
 import { DataService } from './Services/data.service';
-
 
 const routes: Routes = [
   { path: '' , redirectTo : 'home', pathMatch:'full'},

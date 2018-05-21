@@ -17,12 +17,20 @@ export class ElementHomeComponent implements OnInit {
 
     
 
-    this.datas  = this.datasvc.action;
-   
+    this.datas  = this.datasvc.data[this.datasvc.CountPatent-1].Elements;
+    console.log(this.datasvc.data);
+   $(function(){
+     $(".sortables").sortable({
+       connectWith : ".sortables"
+     });
+   });
   }
 
   done(){
-
+    this.datasvc.avail = true;
+    localStorage.setItem(this.datasvc.data[this.datasvc.CountPatent-1].email,JSON.stringify(this.datasvc.data));
+    this.router.navigate(['/home']);
+    
   }
 
   addElement(){
@@ -30,8 +38,8 @@ export class ElementHomeComponent implements OnInit {
   }
 
   addSubElement(parentID ?: number){
-    this.router.navigate(["/addSubElement",this.datasvc.Count]);
-    this.datasvc.Count += 1;
+    this.router.navigate(["/addSubElement",parentID]);
+  
   }
 
 }

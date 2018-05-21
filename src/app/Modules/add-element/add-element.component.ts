@@ -30,7 +30,8 @@ export class AddElementComponent implements OnInit {
   
     let values = new AddElementType(this.formgroup.value.title,this.formgroup.value.briefDescription,this.formgroup.value.features,this.formgroup.value.about,this.formgroup.value.figure,this.dataSVC.Count,null,[]);
 
-    this.dataSVC.action.push(values);
+    this.dataSVC.data[this.dataSVC.CountPatent-1].Elements.push(values);
+    this.dataSVC.Count += 1;
     console.log(values);
     this.router.navigate(['/elementHome']);
   }

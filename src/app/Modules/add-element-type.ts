@@ -10,3 +10,18 @@ export class AddElementType {
         public subElement ?: AddElementType[]
     ){}
 }
+
+export class PatentType{
+    constructor(
+     public email : string,
+     public inventorName: string,
+     public inventorPlace : string,
+     public inventionTitle : string,
+     public reference : number,
+     public dockerNumber : number,
+     public inventionType : string,
+     public problemDefinition : string,
+     public about : string,
+     public Elements ?: AddElementType[]
+    ){}
+}

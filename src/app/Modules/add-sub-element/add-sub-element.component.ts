@@ -30,8 +30,8 @@ export class AddSubElementComponent implements OnInit {
     
     //this.dataSVC.action[this.parentId].subElement = this.formgroup.values;
     let values = new AddElementType(this.formgroup.value.title,this.formgroup.value.briefDescription,this.formgroup.value.features,this.formgroup.value.about,this.formgroup.value.figure);
-    this.dataSVC.action[this.parentId-1].subElement.push(values)
-    console.log(this.dataSVC.action);
+    this.dataSVC.data[this.dataSVC.CountPatent-1].Elements[this.parentId-1].subElement.push(values);
+    console.log(this.dataSVC.data);
     this.router.navigate(['/elementHome']);
   }
 

@@ -1,4 +1,18 @@
-<p>
-  edit-patent works!
-</p>
+<mat-card style="margin: 3%">
+    <div style="text-align: center">
+    <mat-card-title> Patenet Generator </mat-card-title>
+    <mat-card-subtitle>Generate Provisional Patent</mat-card-subtitle>
+    <mat-card-content>Edit your Patent Here . . . 
+
+      <br>
+      
+        
+      <br>
+    </mat-card-content>
+    </div>
+    <mat-card-actions style="text-align: center">
+      <button mat-raised-button color='primary' (click)="edit()">Edit</button>
+      <button mat-raised-button color='primary' (click)="done()" >Done</button>
+    </mat-card-actions>
+  </mat-card>
 <router-outlet></router-outlet>
