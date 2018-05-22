@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Inject } from '@angular/core';
 import {Router} from '@angular/router';
+import { EditDialogComponent } from '../../Modules/edit-dialog/edit-dialog.component';
+import {MatDialog, MatDialogConfig , MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { NewPatentComponent } from '../new-patent/new-patent.component';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -7,17 +11,21 @@ import {Router} from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private router : Router) { }
+  constructor(private router : Router,public dialog: MatDialog) { }
 
   
   newPatent(){
     console.log("going to new patent");
-    this.router.navigate(['newPatent']);
+    const dialogConfig = new MatDialogConfig();
+    this.dialog.open(NewPatentComponent, dialogConfig);
+    //this.router.navigate(['newPatent']);
   }
 
   editPatent(){
     console.log("going to edit patent");
-    this.router.navigate(['editPatent']);
+    const dialogConfigs = new MatDialogConfig();
+    this.dialog.open(EditDialogComponent, dialogConfigs);
+   
   }
 
   exportPatent(){

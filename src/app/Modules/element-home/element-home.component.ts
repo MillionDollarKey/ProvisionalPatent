@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../Services/data.service';
 import { Router } from '@angular/router';
 import {AddElementType} from "../add-element-type";
+import { NewPatentComponent } from '../new-patent/new-patent.component';
+import { AddElementComponent } from '../add-element/add-element.component';
+import {AddSubElementComponent} from '../add-sub-element/add-sub-element.component';
+import {MatDialog, MatDialogConfig , MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+
 declare var $ : any ;
 @Component({
   selector: 'app-element-home',
@@ -11,7 +16,7 @@ declare var $ : any ;
 export class ElementHomeComponent implements OnInit {
 
   datas  : AddElementType [];
-  constructor( private datasvc : DataService , private router : Router) { }
+  constructor( private datasvc : DataService , private router : Router ,public dialog: MatDialog) { }
 
   ngOnInit() {
 
@@ -27,18 +32,24 @@ export class ElementHomeComponent implements OnInit {
   }
 
   done(){
+    
     this.datasvc.avail = true;
     localStorage.setItem(this.datasvc.data[this.datasvc.CountPatent-1].email,JSON.stringify(this.datasvc.data));
-    this.router.navigate(['/home']);
-    
+   
+    this.router.navigate(['']);
   }
 
   addElement(){
-    this.router.navigate(['/addElement']);
+    const dialogConfig = new MatDialogConfig();
+    this.dialog.open(AddElementComponent, dialogConfig);
+  //  this.router.navigate(['/addElement']);
   }
 
   addSubElement(parentID ?: number){
-    this.router.navigate(["/addSubElement",parentID]);
+    const dialogConfigs = new MatDialogConfig();
+    dialogConfigs.data = parentID;
+    this.dialog.open(AddSubElementComponent, dialogConfigs);
+   // this.router.navigate(["/addSubElement",parentID]);
   
   }
 

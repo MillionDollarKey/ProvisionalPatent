@@ -3,6 +3,8 @@ import { FormGroup , FormControl, Validators} from '@angular/forms';
 import { DataService } from '../../Services/data.service';
 import { Router } from "@angular/router";
 import { AddElementType } from "../add-element-type";
+import { MatDialogRef,MatDialog,MatDialogTitle,MatDialogActions,MatDialogContent } from "@angular/material";
+import { ElementHomeComponent } from "../element-home/element-home.component";
 @Component({
   selector: 'app-add-element',
   templateUrl: './add-element.component.html',
@@ -13,7 +15,7 @@ export class AddElementComponent implements OnInit {
   formgroup : any;
   ActionType : AddElementType;
 
-  constructor(private router : Router , private dataSVC : DataService) { }
+  constructor(private router : Router , private dataSVC : DataService,public dialogRef: MatDialogRef<ElementHomeComponent>) { }
 
   ngOnInit() {
     this.formgroup = new FormGroup({
@@ -33,7 +35,12 @@ export class AddElementComponent implements OnInit {
     this.dataSVC.data[this.dataSVC.CountPatent-1].Elements.push(values);
     this.dataSVC.Count += 1;
     console.log(values);
+    this.dialogRef.close();
     this.router.navigate(['/elementHome']);
+  }
+
+  cancel() {
+    this.dialogRef.close();
   }
 
 }

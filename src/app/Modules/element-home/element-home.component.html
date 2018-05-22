@@ -1,18 +1,20 @@
 <mat-card style="margin: 3%">
   <div style="text-align: center">
-  <mat-card-title> Patenet Generator </mat-card-title>
-  <mat-card-subtitle>Generate Provisional Patent</mat-card-subtitle>
-  <mat-card-content>Next we will create a list of all the actions your invention performs, and the components that perform those actions. List the actions in the order they are most often performed. Click on the ADD button to be prompted through adding an element. Click on DONE when all elements are entered.</mat-card-content>
+    <mat-card-title> Patenet Generator </mat-card-title>
+    <mat-card-subtitle>Generate Provisional Patent</mat-card-subtitle>
+    <mat-card-content>Next we will create a list of all the actions your invention performs, and the components that perform those actions.
+      List the actions in the order they are most often performed. Click on the ADD button to be prompted through adding
+      an element. Click on DONE when all elements are entered.</mat-card-content>
   </div>
   <mat-card-actions style="text-align: center">
     <button mat-raised-button color='primary' (click)="addElement()">Add Element</button>
-    <button mat-raised-button color='primary' (click)="done()" >Done</button>
+    <button mat-raised-button color='primary' (click)="done()">Done</button>
   </mat-card-actions>
 </mat-card>
 <mat-card style="margin: 3%">
   <div style="text-align: center">
-  <mat-card-title> Actions and Sub Actions </mat-card-title>
-</div>
+    <mat-card-title> Actions and Sub Actions </mat-card-title>
+  </div>
   <mat-card-content>
     <div class="sortables" *ngFor="let action of datas">
       <ul>{{action.title}}
@@ -21,14 +23,14 @@
             add
           </i>
         </a>
-        <div  class="sortables" *ngIf = "action.subElement.length > 0" >
+        <div class="sortables" *ngIf="action.subElement.length > 0">
           <li></li>
-          <li  *ngFor="let act of action.subElement" >{{act.title}}</li>
+          <li *ngFor="let act of action.subElement">{{act.title}}</li>
         </div>
       </ul>
     </div>
   </mat-card-content>
-  
+
 </mat-card>
 <router-outlet></router-outlet>
 <!--

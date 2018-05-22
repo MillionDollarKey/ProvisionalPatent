@@ -6,6 +6,8 @@ import { DataService } from '../../Services/data.service';
 import { Router } from "@angular/router";
 import { AddElementComponent } from '../add-element/add-element.component';
 import { AddElementType,PatentType } from '../add-element-type';
+import { MatDialogRef,MatDialog,MatDialogTitle,MatDialogActions,MatDialogContent } from "@angular/material";
+import { HomeComponent } from "../../Modules/home/home.component";
 @Component({
   selector: 'app-new-patent',
   templateUrl: './new-patent.component.html',
@@ -26,7 +28,7 @@ export class NewPatentComponent implements OnInit {
 
   
 
-  constructor( private http : HttpClient, private datasvc :DataService ,private router : Router ) { }
+  constructor( private http : HttpClient, private datasvc :DataService ,private router : Router ,public dialogRef: MatDialogRef<HomeComponent>) { }
 
   ngOnInit() {
 
@@ -51,7 +53,12 @@ export class NewPatentComponent implements OnInit {
     console.log(values);
     this.datasvc.CountPatent += 1;
     let length =  this.datasvc.data.push(values);
+    this.dialogRef.close();
     this.router.navigate(['elementHome']);
+  }
+
+  cancel(){
+    this.dialogRef.close();
   }
 
 }

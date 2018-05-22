@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../Services/data.service';
 import {AddElementType,PatentType} from "../add-element-type";
+import { Router,ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-edit-patent',
@@ -8,11 +9,13 @@ import {AddElementType,PatentType} from "../add-element-type";
   styleUrls: ['./edit-patent.component.css']
 })
 export class EditPatentComponent implements OnInit {
-
-  constructor(private dataSVC : DataService) { }
+  email : string = "";
+  constructor(private dataSVC : DataService,private route : ActivatedRoute,private router : Router ) { }
   data : PatentType [];
   available : boolean  ;
+
   ngOnInit() {
-    this.data = JSON.parse(localStorage.getItem(""));
+    this.email = this.route.snapshot.params['id'];
+     this.data  = JSON.parse( localStorage.getItem(this.email) );
   }
 }

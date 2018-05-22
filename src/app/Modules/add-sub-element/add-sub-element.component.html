@@ -1,73 +1,76 @@
-<mat-card style="margin: 3%">
-    <div style="text-align: center">
-      <mat-card-title> Add Sub-Action </mat-card-title>
-      <mat-card-subtitle>Add action/Elements/Alternatives </mat-card-subtitle>
-    </div>
-    <form [formGroup] = 'formgroup' (ngSubmit)="submit()">
-  
-      <mat-card-content>
-        <h4><p>Parent ID is {{parentId}}</p></h4>
-            <mat-divider> </mat-divider>
-            <br>
-            <p>Briefly describe what action the invention performs, such as "Generates an encryption key"</p>
-              <mat-form-field>
-                <input matInput placeholder="Brief Description" style="width:100%" [formControl]="formgroup.controls['briefDescription']">
-               
-                <mat-error *ngIf="formgroup.controls['briefDescription'].hasError('required')">
-                  Brief Description is <strong>required</strong>
-                </mat-error>
-              </mat-form-field>
-              <mat-divider> </mat-divider>
-            <br>
-            
-            <br>
-            <p>What physical component performs that action? If your invention is software and the action is done by the computer, just leave the component field blank.</p>
-            <mat-form-field>
-                <input matInput placeholder="Title" style="width:100%" [formControl]="formgroup.controls['title']" >
-                <mat-error *ngIf="formgroup.controls['title'].hasError('required')">
-                Title is <strong>required</strong>
-                </mat-error>
-              </mat-form-field>
-              <mat-divider> </mat-divider>
-              <br>
-              
-            <p>If you will include a figure that shows the component, enter the number of figure here. (1,2,3,...)</p>
-            <mat-form-field>
-                <input type='number' matInput placeholder="Reference" style="width:100%" [formControl]="formgroup.controls['figure']">
-                <mat-error *ngIf="formgroup.controls['figure'].hasError('required')">
-                  Figure is <strong>required</strong>
-                  </mat-error>
-                      </mat-form-field>
-          <mat-divider> </mat-divider>
-          <br>
-            
-              <p>Describe any unique and important features of the component. this is not needed if the component is computer.</p>
-              <mat-form-field>
-                  <textarea matInput placeholder="Problem Definiton" style="width:100%" [formControl]="formgroup.controls['features']"></textarea>
-                  <mat-error *ngIf="formgroup.controls['features'].hasError('required')">
-                    Features is <strong>required</strong>
-                    </mat-error>
-            </mat-form-field>
-            <mat-divider> </mat-divider>
-            <br>
-            <p>Add an aditional details about this action or component.</p>
-            <mat-form-field>
-                <textarea matInput placeholder="The Invention" style="width:100%" [formControl]="formgroup.controls['about']"></textarea>
-                <mat-error *ngIf="formgroup.controls['about'].hasError('required')">
-                  about is <strong>required</strong>
-                 </mat-error>
-          </mat-form-field>
-        
-        
-      </mat-card-content>
-       <mat-card-actions style="text-align: center">
-          <button mat-raised-button color='primary' type="submit" >Submit</button>
-          <button mat-raised-button color='primary' (click)="cancel()" > Cancel </button>
-      </mat-card-actions>
-    </form>
-  </mat-card>
-  <br>
-  
-  <router-outlet></router-outlet>
-  
-<router-outlet></router-outlet>
+<div style="text-align: center">
+  <h3 mat-dialog-title> Add Sub-Action </h3>
+
+</div>
+<form [formGroup]='formgroup' (ngSubmit)="submit()">
+
+  <mat-dialog-content>
+    <h4>
+      <p>Parent ID is {{parentId}}</p>
+    </h4>
+
+    <br>
+    <p>Briefly describe what action the invention performs, such as "Generates an encryption key"</p>
+    <mat-form-field>
+      <input matInput placeholder="Brief Description" style="width:100%" [formControl]="formgroup.controls['briefDescription']">
+
+      <mat-error *ngIf="formgroup.controls['briefDescription'].hasError('required')">
+        Brief Description is
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <br>
+
+    <br>
+    <p>What physical component performs that action? If your invention is software and the action is done by the computer, just
+      leave the component field blank.</p>
+    <mat-form-field>
+      <input matInput placeholder="Title" style="width:100%" [formControl]="formgroup.controls['title']">
+      <mat-error *ngIf="formgroup.controls['title'].hasError('required')">
+        Title is
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <br>
+
+    <p>If you will include a figure that shows the component, enter the number of figure here. (1,2,3,...)</p>
+    <mat-form-field>
+      <input type='number' matInput placeholder="Reference" style="width:100%" [formControl]="formgroup.controls['figure']">
+      <mat-error *ngIf="formgroup.controls['figure'].hasError('required')">
+        Figure is
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <br>
+
+    <p>Describe any unique and important features of the component. this is not needed if the component is computer.</p>
+    <mat-form-field>
+      <textarea matInput placeholder="Problem Definiton" style="width:100%" [formControl]="formgroup.controls['features']"></textarea>
+      <mat-error *ngIf="formgroup.controls['features'].hasError('required')">
+        Features is
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <br>
+    <p>Add an aditional details about this action or component.</p>
+    <mat-form-field>
+      <textarea matInput placeholder="The Invention" style="width:100%" [formControl]="formgroup.controls['about']"></textarea>
+      <mat-error *ngIf="formgroup.controls['about'].hasError('required')">
+        about is
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+
+  </mat-dialog-content>
+  <mat-dialog-actions style="text-align: center">
+    <button mat-raised-button color='primary' type="submit">Submit</button>
+    <button mat-raised-button color='primary' (click)="close()"> Cancel </button>
+  </mat-dialog-actions>
+</form>
+
+<br>

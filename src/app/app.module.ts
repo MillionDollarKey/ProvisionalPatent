@@ -16,34 +16,38 @@ import { ExportPatentComponent } from './Modules/export-patent/export-patent.com
 import { HomeComponent } from './Modules/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DataService } from './Services/data.service';
+import {MatDialogModule} from '@angular/material';
+import { EditDialogComponent } from './Modules/edit-dialog/edit-dialog.component';
+import { FormsModule }   from '@angular/forms';
+import { Angular2Csv } from 'angular2-csv/Angular2-csv';
 
 const routes: Routes = [
   { path: '' , redirectTo : 'home', pathMatch:'full'},
   { path: 'home', component: HomeComponent },
-  { path: 'newPatent', component: NewPatentComponent },
-  { path: 'editPatent', component: EditPatentComponent },
+  { path: 'editPatent/:id', component: EditPatentComponent },
   { path: 'exportPatent', component: ExportPatentComponent },
   { path: 'elementHome', component: ElementHomeComponent },
-  { path: 'addElement', component: AddElementComponent },
-  { path: 'addSubElement/:id', component: AddSubElementComponent }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
     NewPatentComponent,
     ElementHomeComponent,
     AddElementComponent,
     AddSubElementComponent,
     EditPatentComponent,
     ExportPatentComponent,
-    HomeComponent
+    EditDialogComponent,
   ],
   imports: [
     
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
+    MatDialogModule,
     NoopAnimationsModule,
     MatButtonModule,
     MatCheckboxModule,
@@ -58,6 +62,8 @@ const routes: Routes = [
     
   ],
   providers: [DataService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [EditDialogComponent, AddElementComponent,
+    AddSubElementComponent,NewPatentComponent]
 })
 export class AppModule { }
