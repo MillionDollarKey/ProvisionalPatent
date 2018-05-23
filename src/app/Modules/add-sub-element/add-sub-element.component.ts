@@ -15,7 +15,7 @@ export class AddSubElementComponent implements OnInit {
   formgroup : any;
   ActionType : AddElementType;
   parentId : number;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: number,private route : ActivatedRoute,private router : Router , private dataSVC : DataService,public dialogRef: MatDialogRef<ElementHomeComponent>) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private route : ActivatedRoute,private router : Router , private dataSVC : DataService,public dialogRef: MatDialogRef<ElementHomeComponent>) { }
 
   ngOnInit() {
     this.parentId = this.data;
@@ -36,7 +36,7 @@ export class AddSubElementComponent implements OnInit {
     this.dataSVC.data[this.dataSVC.CountPatent-1].Elements[this.parentId-1].subElement.push(values);
     console.log(this.dataSVC.data);
     this.dialogRef.close();
-    this.router.navigate(['/elementHome']);
+   // this.router.navigate(['/elementHome']);
   }
   close() {
     this.dialogRef.close();

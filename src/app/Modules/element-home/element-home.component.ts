@@ -34,9 +34,8 @@ export class ElementHomeComponent implements OnInit {
   done(){
     
     this.datasvc.avail = true;
-    localStorage.setItem(this.datasvc.data[this.datasvc.CountPatent-1].email,JSON.stringify(this.datasvc.data));
-   
-    this.router.navigate(['']);
+    this.router.navigateByUrl('/');
+    localStorage.setItem('patents',JSON.stringify(this.datasvc.data));
   }
 
   addElement(){

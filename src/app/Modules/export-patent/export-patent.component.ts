@@ -10,7 +10,7 @@ export class ExportPatentComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-//      new Angular2Csv(data, 'My Report');
+ // let csvData = new Angular2Csv(data, 'My Report');
   }
 
 }

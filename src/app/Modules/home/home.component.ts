@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import { EditDialogComponent } from '../../Modules/edit-dialog/edit-dialog.component';
 import {MatDialog, MatDialogConfig , MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { NewPatentComponent } from '../new-patent/new-patent.component';
+import {PatentType} from "../add-element-type";
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private router : Router,public dialog: MatDialog) { }
 
+  data : PatentType [] ;
   
   newPatent(){
     console.log("going to new patent");
@@ -21,19 +23,24 @@ export class HomeComponent implements OnInit {
     //this.router.navigate(['newPatent']);
   }
 
-  editPatent(){
+  editPatent(index){
     console.log("going to edit patent");
-    const dialogConfigs = new MatDialogConfig();
-    this.dialog.open(EditDialogComponent, dialogConfigs);
+    this.router.navigate(['/editPatent',index]);
    
   }
 
-  exportPatent(){
+  exportPatent(index){
     console.log("going to export patent");
-    this.router.navigate(['exportPatent']);
+    this.router.navigate(['/exportPatent',index]);
+  }
+
+  deletePatent(){
+    localStorage.removeItem("patents");
   }
 
   ngOnInit() {
+    this.data  = JSON.parse( localStorage.getItem('patents') );
+    console.log(this.data);
   }
 
 }

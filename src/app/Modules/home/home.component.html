@@ -10,4 +10,32 @@
       <button mat-raised-button color="primary"  (click)="exportPatent()" >Export Provisional patent</button>
     </mat-card-actions>
   </mat-card>
-  <router-outlet></router-outlet>
+  <mat-card style="margin: 3%">
+    <div style="text-align: center">
+    <mat-card-title>  Patent List </mat-card-title>
+    <mat-card-subtitle>View Edit and Export your Patent</mat-card-subtitle>
+    <mat-card-content>
+     <table >
+        <tr>
+          <th>Title of invention</th>
+          <th>Actions</th>
+        </tr>
+        <tr *ngFor="let db of data , let i = index">
+        <td>{{db.inventionTitle}}</td>
+        <td>
+          <a  color="primary"  (click)="editPatent(i)"><i class="material-icons">
+            border_color
+            </i></a>
+
+          <a  color="primary"  (click)="deletePatent(i)"> <i class="material-icons">
+            delete
+            </i></a>
+
+        </td>
+      </tr>
+      </table> 
+    </mat-card-content>
+    </div>
+    
+  </mat-card>
+ 

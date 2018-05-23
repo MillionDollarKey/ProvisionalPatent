@@ -25,7 +25,7 @@ const routes: Routes = [
   { path: '' , redirectTo : 'home', pathMatch:'full'},
   { path: 'home', component: HomeComponent },
   { path: 'editPatent/:id', component: EditPatentComponent },
-  { path: 'exportPatent', component: ExportPatentComponent },
+  { path: 'exportPatent/:id', component: ExportPatentComponent },
   { path: 'elementHome', component: ElementHomeComponent },
 ];
 
@@ -45,6 +45,7 @@ const routes: Routes = [
     
     BrowserModule,
     HttpClientModule,
+    RouterModule.forRoot(routes),
     ReactiveFormsModule,
     FormsModule,
     MatDialogModule,
@@ -58,7 +59,6 @@ const routes: Routes = [
     MatDividerModule,
     MatSelectModule,
     MatAutocompleteModule,
-    RouterModule.forRoot(routes)
     
   ],
   providers: [DataService],

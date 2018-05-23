@@ -11,6 +11,7 @@ export class DataService {
   
   data : PatentType  [] = [] ;
   avail : boolean = false;
+  editPatent : boolean = false;
   
   Count : number = 1 ;
   CountPatent : number = 0;
