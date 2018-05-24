@@ -15,7 +15,7 @@
       <mat-card-title> Actions and Sub Actions </mat-card-title>
     </div>
     <mat-card-content>
-      <div class="sortables" *ngFor="let action of data">
+      <div class="sortables" *ngFor="let action of Datas">
         <ul>{{action.title}}
           <a (click)="addSubElement(action.id)">
             <i class="material-icons">

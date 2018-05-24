@@ -6,8 +6,7 @@
     </div>
     <mat-card-actions style="text-align: center">
       <button mat-raised-button color="primary"  (click)="newPatent()">New Provisional Patent</button>
-      <button mat-raised-button color="primary"  (click)="editPatent()" > Edit Existing Patent </button>
-      <button mat-raised-button color="primary"  (click)="exportPatent()" >Export Provisional patent</button>
+    
     </mat-card-actions>
   </mat-card>
   <mat-card style="margin: 3%">
@@ -15,7 +14,7 @@
     <mat-card-title>  Patent List </mat-card-title>
     <mat-card-subtitle>View Edit and Export your Patent</mat-card-subtitle>
     <mat-card-content>
-     <table >
+     <table style="width: 100%">
         <tr>
           <th>Title of invention</th>
           <th>Actions</th>
@@ -26,9 +25,9 @@
           <a  color="primary"  (click)="editPatent(i)"><i class="material-icons">
             border_color
             </i></a>
-
-          <a  color="primary"  (click)="deletePatent(i)"> <i class="material-icons">
-            delete
+          
+          <a  color="primary"  (click)="exportPatent(i)"> <i class="material-icons">
+            save_alt
             </i></a>
 
         </td>

@@ -1,159 +1,363 @@
+<!--address, city, state, postal code, country, phone, email,-->
 <div style="text-align: center">
   <h3 mat-dialog-title> New Patent </h3>
 </div>
-<form [formGroup] = 'formgroup' (ngSubmit)="submit()">
+<form [formGroup]='formgroup' (ngSubmit)="submit()">
   <mat-dialog-content>
     <br>
     <p>First, tell me where to email application after it has been generated.</p>
-    <mat-form-field>
+    <mat-form-field class="inputs">
       <input matInput placeholder="Email Address" style="width:100%" [formControl]="formgroup.controls['email']">
       <mat-error *ngIf="formgroup.controls['email'].hasError('email') && !formgroup.controls['email'].hasError('required')">
         Please enter a valid email address
       </mat-error>
       <mat-error *ngIf="formgroup.controls['email'].hasError('required')">
-        Email is <strong>required</strong>
+        Email is
+        <strong>required</strong>
       </mat-error>
-    </mat-form-field> 
+    </mat-form-field>
     <br>
-    <p>Add the name of all inventors, everyone that contributed the idea.Also add the city and state where inventer recide just for unique identification. </p>      
-      <p>Inventor 1</p>
-      <mat-form-field>
-        <input matInput placeholder="Name" style="width:100%" [formControl] = "formgroup.controls['inventorName']">
-        <mat-error *ngIf="formgroup.controls['inventorName'].hasError('required')">
-          Name is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field style="margin-left: 5%">
-        <input type="text" matInput placeholder="State and Country" [matAutocomplete]="auto" [formControl]="formgroup.controls['inventorPlace']" >
-        <mat-error *ngIf="formgroup.controls['inventorPlace'].hasError('required')">
-        Place is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
-      <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let option of options" [value]="option">
-        {{ option }}
-      </mat-option>
-      </mat-autocomplete>
+    <p>Add the name of all inventors, everyone that contributed the idea.Also add the city and state where inventer recide just
+      for unique identification. </p>
+    <p>Inventor 1</p>
+    <mat-form-field class="inputs">
+      <input matInput placeholder="Name" style="width:100%" [formControl]="formgroup.controls['inventorName1']">
+      <mat-error *ngIf="formgroup.controls['inventorName1'].hasError('required')">
+        Name is
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="inputs">
+      <input matInput placeholder="Adress" style="width:100%" [formControl]="formgroup.controls['inventorAddress1']">
+      <mat-error *ngIf="formgroup.controls['inventorAddress1'].hasError('required')">
+        Address 
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="inputs">
+      <input matInput placeholder="City" style="width:100%" [formControl]="formgroup.controls['inventorCity1']">
+      <mat-error *ngIf="formgroup.controls['inventorCity1'].hasError('required')">
+        City
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="inputs">
+      <input matInput placeholder="State" style="width:100%" [formControl]="formgroup.controls['inventorState1']">
+      <mat-error *ngIf="formgroup.controls['inventorState1'].hasError('required')">
+        State
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  
+    <mat-form-field class="inputs">
+      <input matInput placeholder="Country" style="width:100%" [formControl]="formgroup.controls['inventorCountry1']">
+      <mat-error *ngIf="formgroup.controls['inventorCountry1'].hasError('required')">
+        Country
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  
+    <mat-form-field class="inputs">
+      <input matInput type="number" placeholder="Postal Code" style="width:100%" [formControl]="formgroup.controls['inventorPostalCode1']">
+      <mat-error *ngIf="formgroup.controls['inventorPostalCode1'].hasError('required')">
+        Postal Code
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="inputs">
+      <input matInput placeholder="Phone Number" style="width:100%" [formControl]="formgroup.controls['inventorPhone1']">
+      <mat-error *ngIf="formgroup.controls['inventorPhone1'].hasError('required')">
+        Phone Number
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="inputs">
+      <input matInput placeholder="Email Address" style="width:100%" [formControl]="formgroup.controls['inventorEmail1']">
+      <mat-error *ngIf="formgroup.controls['inventorEmail1'].hasError('email') && !formgroup.controls['inventorEmail1'].hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="formgroup.controls['inventorEmail1'].hasError('required')">
+        Email is
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    
+    
+
     <p>Inventor 2</p>
-      <mat-form-field>
-      <input matInput placeholder="Name" style="width:100%" [formControl] = "formgroup.controls['inventorName']">
-      <mat-error *ngIf="formgroup.controls['inventorName'].hasError('required')">
-         Name is <strong>required</strong>
+    <mat-form-field class="inputs">
+      <input matInput placeholder="Name" style="width:100%" [formControl]="formgroup.controls['inventorName2']">
+      <mat-error *ngIf="formgroup.controls['inventorName2'].hasError('required')">
+        Name is
+        <strong>required</strong>
       </mat-error>
-      </mat-form-field>
-      <mat-form-field style="margin-left: 5%">
-      <input type="text" matInput placeholder="State and Country" [matAutocomplete]="auto" [formControl]="formgroup.controls['inventorPlace']">
-      <mat-error *ngIf="formgroup.controls['inventorPlace'].hasError('required')">
-        Place is <strong>required</strong>
+    </mat-form-field>
+    <mat-form-field class="inputs">
+      <input matInput placeholder="Adress" style="width:100%" [formControl]="formgroup.controls['inventorAddress2']">
+      <mat-error *ngIf="formgroup.controls['inventorAddress2'].hasError('required')">
+        Address 
+        <strong>required</strong>
       </mat-error>
-      </mat-form-field>
-                      <mat-autocomplete #auto="matAutocomplete">
-                        <mat-option *ngFor="let option of options" [value]="option">
-                          {{ option }}
-                        </mat-option>
-                      </mat-autocomplete>
-            
-              <p>Inventor 3</p>
-              
-                  <mat-form-field>
-                      <input matInput placeholder="Name" style="width:100%" [formControl] = "formgroup.controls['inventorName']">
-                      <mat-error *ngIf="formgroup.controls['inventorName'].hasError('required')">
-                        Name is <strong>required</strong>
-                     </mat-error>
-                    </mat-form-field>
-                    <mat-form-field style="margin-left: 5%">
-                        <input type="text" matInput placeholder="State and Country" [matAutocomplete]="auto" [formControl]="formgroup.controls['inventorPlace']">
-                        <mat-error *ngIf="formgroup.controls['inventorPlace'].hasError('required')">
-                          Place is <strong>required</strong>
-                       </mat-error>
-                      </mat-form-field>
-                      <mat-autocomplete #auto="matAutocomplete">
-                        <mat-option *ngFor="let option of options" [value]="option">
-                          {{ option }}
-                        </mat-option>
-                      </mat-autocomplete>
-              
-              <p>Inventor 4</p>
-              
-                  <mat-form-field>
-                      <input matInput placeholder="Name" style="width:100%" [formControl] = "formgroup.controls['inventorName']">
-                      <mat-error *ngIf="formgroup.controls['inventorName'].hasError('required')">
-                        Name is <strong>required</strong>
-                     </mat-error>
-                    </mat-form-field>
-                    <mat-form-field style="margin-left: 5%">
-                        <input type="text" matInput placeholder="State and Country" [matAutocomplete]="auto" [formControl]="formgroup.controls['inventorPlace']">
-                        <mat-error *ngIf="formgroup.controls['inventorPlace'].hasError('required')">
-                          Place is <strong>required</strong>
-                       </mat-error>
-                      </mat-form-field>
-                      <mat-autocomplete #auto="matAutocomplete">
-                        <mat-option *ngFor="let option of options" [value]="option">
-                          {{ option }}
-                        </mat-option>
-                      </mat-autocomplete>
-                   
-            <br>
-            <br>
-            <p>What is title of your invention? The title can be the name of a device or composotion , or function the invention perform.</p>
-            <mat-form-field>
-                <input matInput placeholder="Title" style="width:100%" [formControl]="formgroup.controls['inventionTitle']">
-                <mat-error *ngIf="formgroup.controls['inventionTitle'].hasError('required')">
-                  Title is <strong>required</strong>
-               </mat-error>
-              </mat-form-field>
-              <br>
-              <p>If you would like to attach a paper with your application , include a reference to the paper below.</p>
-            <mat-form-field>
-                  <input type="url" matInput placeholder="Reference" style="width:100%" [formControl]="formgroup.controls['reference']">
-                  <mat-error *ngIf="formgroup.controls['reference'].hasError('required')">
-                    Reference is <strong>required</strong>
-                 </mat-error>
-            </mat-form-field>
-            <p>If you would like to refer this patent by docker number, enter that here.</p>
-            <mat-form-field>
-                <input type='number' matInput placeholder="Reference" style="width:100%" [formControl]="formgroup.controls['dockerNumber']">
-                <mat-error *ngIf="formgroup.controls['dockerNumber'].hasError('required')">
-                  Docker Number is <strong>required</strong>
-               </mat-error>
-          </mat-form-field>
-          <br>
-            <p>Which type of invention will you be disclosing : a software, a process, mechanical invention or a composition of a matter?</p>
-            <mat-form-field>
-                <mat-select placeholder="Type of Invention" [formControl]="formgroup.controls['inventionType']">
-                  <mat-option *ngFor="let type of invention" [value]="type.value">
-                    {{ type.viewValue }}
-                  </mat-option>
-                </mat-select>
-                <mat-error *ngIf="formgroup.controls['inventionType'].hasError('required')">
-                Invention Type is <strong>required</strong>
-               </mat-error>
-              </mat-form-field>
-            
-              <br>
-              <p>Describe the problem the invention solve.</p>
-              <mat-form-field>
-                  <textarea matInput placeholder="Problem Definiton" style="width:100%" [formControl]="formgroup.controls['problemDefinition']"></textarea>
-                  <mat-error *ngIf="formgroup.controls['problemDefinition'].hasError('required')">
-                    Problem Definition is <strong>required</strong>
-                   </mat-error>
-            </mat-form-field>
-           
-            <br>
-            <p>Briefly describe what your application does. You will have an opportunity to add more detailed information later.</p>
-            <mat-form-field>
-                <textarea matInput placeholder="The Invention" style="width:100%" [formControl]="formgroup.controls['about']"></textarea>
-                <mat-error *ngIf="formgroup.controls['about'].hasError('required')">
-                  about is <strong>required</strong>
-                 </mat-error>
-          </mat-form-field>
-        
-        
-      </mat-dialog-content>
-       <mat-dialog-actions style="text-align: center">
-          <button mat-raised-button color='primary' type="submit" >Submit</button>
-          <button mat-raised-button color='primary' (click)="cancel()" > Cancel </button>
-      </mat-dialog-actions>
-    </form>
+    </mat-form-field>
+
+    <mat-form-field class="inputs">
+      <input matInput placeholder="City" style="width:100%" [formControl]="formgroup.controls['inventorCity2']">
+      <mat-error *ngIf="formgroup.controls['inventorCity2'].hasError('required')">
+        City
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="inputs">
+      <input matInput placeholder="State" style="width:100%" [formControl]="formgroup.controls['inventorState2']">
+      <mat-error *ngIf="formgroup.controls['inventorState2'].hasError('required')">
+        State
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  
+    <mat-form-field class="inputs">
+      <input matInput placeholder="Country" style="width:100%" [formControl]="formgroup.controls['inventorCountry2']">
+      <mat-error *ngIf="formgroup.controls['inventorCountry2'].hasError('required')">
+        Country
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  
+    <mat-form-field class="inputs">
+      <input matInput type="number" placeholder="Postal Code" style="width:100%" [formControl]="formgroup.controls['inventorPostalCode2']">
+      <mat-error *ngIf="formgroup.controls['inventorPostalCode2'].hasError('required')">
+        Postal Code
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="inputs">
+      <input matInput placeholder="Phone Number" style="width:100%" [formControl]="formgroup.controls['inventorPhone2']">
+      <mat-error *ngIf="formgroup.controls['inventorPhone2'].hasError('required')">
+        Phone Number
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="inputs">
+      <input matInput placeholder="Email Address" style="width:100%" [formControl]="formgroup.controls['inventorEmail2']">
+      <mat-error *ngIf="formgroup.controls['inventorEmail2'].hasError('email') && !formgroup.controls['InventorEmail2'].hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="formgroup.controls['inventorEmail2'].hasError('required')">
+        Email is
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <p>Inventor 3</p>
+
+    <mat-form-field class="inputs">
+      <input matInput placeholder="Name" style="width:100%" [formControl]="formgroup.controls['inventorName3']">
+      <mat-error *ngIf="formgroup.controls['inventorName3'].hasError('required')">
+        Name is
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="inputs">
+      <input matInput placeholder="Adress" style="width:100%" [formControl]="formgroup.controls['inventorAddress3']">
+      <mat-error *ngIf="formgroup.controls['inventorAddress3'].hasError('required')">
+        Address 
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="inputs">
+      <input matInput placeholder="City" style="width:100%" [formControl]="formgroup.controls['inventorCity3']">
+      <mat-error *ngIf="formgroup.controls['inventorCity3'].hasError('required')">
+        City
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="inputs">
+      <input matInput placeholder="State" style="width:100%" [formControl]="formgroup.controls['inventorState3']">
+      <mat-error *ngIf="formgroup.controls['inventorState3'].hasError('required')">
+        State
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  
+    <mat-form-field class="inputs">
+      <input matInput placeholder="Country" style="width:100%" [formControl]="formgroup.controls['inventorCountry3']">
+      <mat-error *ngIf="formgroup.controls['inventorCountry3'].hasError('required')">
+        Country
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  
+    <mat-form-field class="inputs">
+      <input matInput type="number" placeholder="Postal Code" style="width:100%" [formControl]="formgroup.controls['inventorPostalCode3']">
+      <mat-error *ngIf="formgroup.controls['inventorPostalCode3'].hasError('required')">
+        Postal Code
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="inputs">
+      <input matInput placeholder="Phone Number" style="width:100%" [formControl]="formgroup.controls['inventorPhone3']">
+      <mat-error *ngIf="formgroup.controls['inventorPhone3'].hasError('required')">
+        Phone Number
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="inputs">
+      <input matInput placeholder="Email Address" style="width:100%" [formControl]="formgroup.controls['inventorEmail3']">
+      <mat-error *ngIf="formgroup.controls['inventorEmail3'].hasError('email') && !formgroup.controls['inventorEmail3'].hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="formgroup.controls['inventorEmail3'].hasError('required')">
+        Email is
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    
+
+    <p>Inventor 4</p>
+
+    <mat-form-field class="inputs">
+      <input matInput placeholder="Name" style="width:100%" [formControl]="formgroup.controls['inventorName4']">
+      <mat-error *ngIf="formgroup.controls['inventorName4'].hasError('required')">
+        Name is
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="inputs">
+      <input matInput placeholder="Adress" style="width:100%" [formControl]="formgroup.controls['inventorAddress4']">
+      <mat-error *ngIf="formgroup.controls['inventorAddress4'].hasError('required')">
+        Address 
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="inputs">
+      <input matInput placeholder="City" style="width:100%" [formControl]="formgroup.controls['inventorCity4']">
+      <mat-error *ngIf="formgroup.controls['inventorCity4'].hasError('required')">
+        City
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="inputs">
+      <input matInput placeholder="State" style="width:100%" [formControl]="formgroup.controls['inventorState4']">
+      <mat-error *ngIf="formgroup.controls['inventorState4'].hasError('required')">
+        State
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  
+    <mat-form-field class="inputs">
+      <input matInput placeholder="Country" style="width:100%" [formControl]="formgroup.controls['inventorCountry4']">
+      <mat-error *ngIf="formgroup.controls['inventorCountry4'].hasError('required')">
+        Country
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  
+    <mat-form-field class="inputs">
+      <input matInput type="number" placeholder="Postal Code" style="width:100%" [formControl]="formgroup.controls['inventorPostalCode4']">
+      <mat-error *ngIf="formgroup.controls['inventorPostalCode4'].hasError('required')">
+        Postal Code
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="inputs">
+      <input matInput placeholder="Phone Number" style="width:100%" [formControl]="formgroup.controls['inventorPhone4']">
+      <mat-error *ngIf="formgroup.controls['inventorPhone4'].hasError('required')">
+        Phone Number
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="inputs">
+      <input matInput placeholder="Email Address" style="width:100%" [formControl]="formgroup.controls['inventorEmail4']">
+      <mat-error *ngIf="formgroup.controls['inventorEmail4'].hasError('email') && !formgroup.controls['inventorEmail4'].hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="formgroup.controls['inventorEmail4'].hasError('required')">
+        Email is
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+ 
+    <br>
+    <br>
+    <p>What is title of your invention? The title can be the name of a device or composotion , or function the invention perform.</p>
+    <mat-form-field class="inputs">
+      <input matInput placeholder="Title" style="width:100%" [formControl]="formgroup.controls['inventionTitle']">
+      <mat-error *ngIf="formgroup.controls['inventionTitle'].hasError('required')">
+        Title is
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <p>If you would like to attach a paper with your application , include a reference to the paper below.</p>
+    <mat-form-field class="inputs">
+      <input type="url" matInput placeholder="Reference" style="width:100%" [formControl]="formgroup.controls['reference']">
+      <mat-error *ngIf="formgroup.controls['reference'].hasError('required')">
+        Reference is
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <p>If you would like to refer this patent by docker number, enter that here.</p>
+    <mat-form-field class="inputs">
+      <input type='number' matInput placeholder="Reference" style="width:100%" [formControl]="formgroup.controls['dockerNumber']">
+      <mat-error *ngIf="formgroup.controls['dockerNumber'].hasError('required')">
+        Docker Number is
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <p>Which type of invention will you be disclosing : a software, a process, mechanical invention or a composition of a matter?</p>
+    <mat-form-field class="inputs">
+      <mat-select placeholder="Type of Invention" [formControl]="formgroup.controls['inventionType']">
+        <mat-option *ngFor="let type of invention" [value]="type.value">
+          {{ type.viewValue }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="formgroup.controls['inventionType'].hasError('required')">
+        Invention Type is
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <br>
+    <p>Describe the problem the invention solve.</p>
+    <mat-form-field class="inputs">
+      <textarea matInput placeholder="Problem Definiton" style="width:100%" [formControl]="formgroup.controls['problemDefinition']"></textarea>
+      <mat-error *ngIf="formgroup.controls['problemDefinition'].hasError('required')">
+        Problem Definition is
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <br>
+    <p>Briefly describe what your application does. You will have an opportunity to add more detailed information later.</p>
+    <mat-form-field class="inputs">
+      <textarea matInput placeholder="The Invention" style="width:100%" [formControl]="formgroup.controls['about']"></textarea>
+      <mat-error *ngIf="formgroup.controls['about'].hasError('required')">
+        about is
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
 
 
+  </mat-dialog-content>
+  <mat-dialog-actions style="text-align: center">
+    <button mat-raised-button color='primary' type="submit">Submit</button>
+    <button mat-raised-button color='primary' (click)="cancel()"> Cancel </button>
+  </mat-dialog-actions>
+</form>

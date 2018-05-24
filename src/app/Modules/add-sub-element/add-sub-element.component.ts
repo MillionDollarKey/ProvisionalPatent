@@ -18,7 +18,13 @@ export class AddSubElementComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,private route : ActivatedRoute,private router : Router , private dataSVC : DataService,public dialogRef: MatDialogRef<ElementHomeComponent>) { }
 
   ngOnInit() {
-    this.parentId = this.data;
+    if(this.dataSVC.editPatent){
+      this.parentId = this.data[1];
+    }
+    else{
+      this.parentId = this.data;
+    }
+    
     this.formgroup = new FormGroup({
       title : new FormControl('',[Validators.required]),
       briefDescription : new FormControl('',[Validators.required]),
@@ -29,11 +35,20 @@ export class AddSubElementComponent implements OnInit {
   }
 
   submit(){
-    
+    let values = new AddElementType(this.formgroup.value.title,this.formgroup.value.briefDescription,this.formgroup.value.features,this.formgroup.value.about,this.formgroup.value.figure);
+
+    if(this.dataSVC.editPatent){
+      console.log(this.data[0] + "this.data[0]");
+      console.log(this.data[1]+ "this.data[1]");
+    this.dataSVC.data[this.data[0]].Elements[this.data[1]-1].subElement.push(values);
+    }
+
+    else{
+    this.dataSVC.data[this.dataSVC.CountPatent-1].Elements[this.parentId-1].subElement.push(values);
+    }
     
     //this.dataSVC.action[this.parentId].subElement = this.formgroup.values;
-    let values = new AddElementType(this.formgroup.value.title,this.formgroup.value.briefDescription,this.formgroup.value.features,this.formgroup.value.about,this.formgroup.value.figure);
-    this.dataSVC.data[this.dataSVC.CountPatent-1].Elements[this.parentId-1].subElement.push(values);
+    
     console.log(this.dataSVC.data);
     this.dialogRef.close();
    // this.router.navigate(['/elementHome']);
