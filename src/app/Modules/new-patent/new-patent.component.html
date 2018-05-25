@@ -1,4 +1,3 @@
-<!--address, city, state, postal code, country, phone, email,-->
 <div style="text-align: center">
   <h3 mat-dialog-title> New Patent </h3>
 </div>
@@ -340,6 +339,16 @@
       <textarea matInput placeholder="Problem Definiton" style="width:100%" [formControl]="formgroup.controls['problemDefinition']"></textarea>
       <mat-error *ngIf="formgroup.controls['problemDefinition'].hasError('required')">
         Problem Definition is
+        <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <br>
+    <p>Enter the name of the publication.</p>
+    <mat-form-field class="inputs">
+      <textarea matInput placeholder="Publication Name" style="width:100%" [formControl]="formgroup.controls['publication']"></textarea>
+      <mat-error *ngIf="formgroup.controls['publication'].hasError('required')">
+        Publication is
         <strong>required</strong>
       </mat-error>
     </mat-form-field>

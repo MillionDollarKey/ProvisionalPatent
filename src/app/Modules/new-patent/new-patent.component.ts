@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { HttpClient } from '@angular/common/http';
 import { DataService } from '../../Services/data.service';
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 import { AddElementComponent } from '../add-element/add-element.component';
 import { AddElementType, PatentType } from '../add-element-type';
-import { MatDialogRef, MatDialog, MatDialogTitle, MatDialogActions, MatDialogContent } from "@angular/material";
-import { HomeComponent } from "../../Modules/home/home.component";
+import { MatDialogRef, MatDialog, MatDialogTitle, MatDialogActions, MatDialogContent } from '@angular/material';
+import { HomeComponent } from '../../Modules/home/home.component';
 @Component({
   selector: 'app-new-patent',
   templateUrl: './new-patent.component.html',
@@ -28,7 +28,8 @@ export class NewPatentComponent implements OnInit {
 
 
 
-  constructor(private http: HttpClient, private datasvc: DataService, private router: Router, public dialogRef: MatDialogRef<HomeComponent>) { }
+  constructor(private http: HttpClient, private datasvc: DataService, private router: Router,
+    public dialogRef: MatDialogRef<HomeComponent>) { }
 
   ngOnInit() {
 
@@ -71,6 +72,7 @@ export class NewPatentComponent implements OnInit {
       dockerNumber: new FormControl('', [Validators.required]),
       inventionType: new FormControl('', [Validators.required]),
       problemDefinition: new FormControl('', [Validators.required, Validators.maxLength(1000)]),
+      publication: new FormControl('', [Validators.required, Validators.maxLength(1000)]),
       about: new FormControl('', [Validators.required, Validators.maxLength(1000)])
 
     });
@@ -78,11 +80,20 @@ export class NewPatentComponent implements OnInit {
   }
 
   submit() {
-    let val = this.formgroup.value;
-    let values = new PatentType(val.email, val.inventorName, val.inventorPlace, val.inventionTitle, val.reference, val.dockerNumber, val.inventionType, val.problemDefinition, val.about, []);
+    const val = this.formgroup.value;
+    const values = new PatentType(val.email, val.inventorName1, val.inventorAddress1, val.inventorCity1,
+      val.inventorState1, val.inventorCountry1, val.inventorPostalCode1, val.inventorPhone1
+      , val.inventorEmail1, val.inventorName2, val.inventorAddress2, val.inventorCity2,
+      val.inventorState2, val.inventorCountry2, val.inventorPostalCode2, val.inventorPhone2
+      , val.inventorEmail2, val.inventorName3, val.inventorAddress3, val.inventorCity3,
+      val.inventorState3, val.inventorCountry3, val.inventorPostalCode3, val.inventorPhone3
+      , val.inventorEmail3, val.inventorName4, val.inventorAddress4, val.inventorCity4,
+      val.inventorState4, val.inventorCountry4, val.inventorPostalCode4, val.inventorPhone4
+      , val.inventorEmail4, val.inventionTitle,
+      val.reference, val.dockerNumber, val.inventionType, val.problemDefinition, val.publication, val.about, []);
     console.log(values);
     this.datasvc.CountPatent += 1;
-    let length = this.datasvc.data.push(values);
+    const length = this.datasvc.data.push(values);
     this.dialogRef.close();
     this.router.navigate(['elementHome']);
   }

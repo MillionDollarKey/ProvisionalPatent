@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AddElementType,PatentType } from '../Modules/add-element-type';
+import { AddElementType, PatentType } from '../Modules/add-element-type';
 @Injectable({
   providedIn: 'root'
 })
@@ -7,13 +7,14 @@ export class DataService {
 
   constructor() { }
 
-  
-  
-  data : PatentType  [] = [] ;
-  avail : boolean = false;
-  editPatent : boolean = false;
-  
-  Count : number = 1 ;
-  CountPatent : number = 0;
+
+
+  data: PatentType[] = [];
+  avail = false;
+  editPatent = false;
+  software = false;
+  composition = false;
+  Count = 1;
+  CountPatent = 0;
 
 }
