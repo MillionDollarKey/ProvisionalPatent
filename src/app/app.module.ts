@@ -20,6 +20,9 @@ import {MatDialogModule} from '@angular/material';
 import { EditDialogComponent } from './Modules/edit-dialog/edit-dialog.component';
 import { FormsModule }   from '@angular/forms';
 import { Angular2Csv } from 'angular2-csv/Angular2-csv';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {DndModule} from 'ng2-dnd';
+
 
 const routes: Routes = [
   { path: '' , redirectTo : 'home', pathMatch:'full'},
@@ -48,12 +51,14 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     ReactiveFormsModule,
     FormsModule,
+    DndModule,
     MatDialogModule,
     NoopAnimationsModule,
     MatButtonModule,
     MatCheckboxModule,
     MatToolbarModule,
     MatCardModule,
+    MatSlideToggleModule,
     MatInputModule,
     MatFormFieldModule,
     MatDividerModule,

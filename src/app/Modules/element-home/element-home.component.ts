@@ -34,6 +34,8 @@ export class ElementHomeComponent implements OnInit {
   done(){
     
     this.datasvc.avail = true;
+    this.datasvc.software = false;
+    this.datasvc.composition = false;
     this.router.navigateByUrl('/');
     localStorage.setItem('patents',JSON.stringify(this.datasvc.data));
   }

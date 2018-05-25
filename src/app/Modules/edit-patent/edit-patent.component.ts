@@ -26,7 +26,15 @@ export class EditPatentComponent implements OnInit {
 
     $(function(){
       $(".sortables").sortable({
-        connectWith : ".sortables"
+        connectWith : ".sortables",
+        update: function(event,ui){
+          var changedList = this.id;
+          var order = $(this).sortable('toArray');
+          console.log({
+            id : changedList,
+            position : order
+          })
+        }
       });
     });
 
@@ -44,6 +52,9 @@ export class EditPatentComponent implements OnInit {
   done(){
     
     this.dataSVC.avail = true;
+    
+    this.dataSVC.software = false;
+    this.dataSVC.composition = false;
     this.router.navigateByUrl('/');
     this.dataSVC.editPatent = false;
      localStorage.setItem( "patents",JSON.stringify(this.dataSVC.data) );

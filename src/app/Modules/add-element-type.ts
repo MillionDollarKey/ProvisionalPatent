@@ -1,12 +1,19 @@
 export class AddElementType {
     constructor(
-        public title: string,
         public briefDescription: string,
-        public features: string,
         public about: string,
-        public figure: number,
+        public novaltyRanking : number,
+        public flowchart: boolean,
         public id?: number,
+        public title?: string,
+        public figureNumber?: number,
+        public figureName?: string,
+        public elementNumberInFigure?: number,
+        public features?: string,  
         public parentId?: number,
+        public alternate?: boolean,
+        public order?: number,
+        public elementStrength?: string,
         public subElement?: AddElementType[]
     ) { }
 }
