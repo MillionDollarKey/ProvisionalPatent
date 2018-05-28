@@ -5,6 +5,8 @@ import { Router } from "@angular/router";
 import { AddElementType } from "../add-element-type";
 import { MatDialogRef,MatDialog,MatDialogTitle,MatDialogActions,MatDialogContent,MAT_DIALOG_DATA } from "@angular/material";
 import { ElementHomeComponent } from "../element-home/element-home.component";
+import { UUID } from 'angular2-uuid';
+
 
 @Component({
   selector: 'app-add-element',
@@ -64,11 +66,11 @@ export class AddElementComponent implements OnInit {
 
   submit(){
    
-  
+    let uuid = UUID.UUID();
     const val = this.formgroup.value;
     const values = new AddElementType(val.briefDescription,val.about,
-      val.novaltyRanking,val.flowChart,this.dataSVC.Count,val.title,
-      val.figureNumber,val.figureName,val.elementNumberInFigure, val.features,
+    val.novaltyRanking,val.flowChart,uuid,val.title,
+    val.figureNumber,val.figureName,val.elementNumberInFigure, val.features,
     null,null,1,val.strength,[]);
     if(this.show){
       this.dataSVC.data[this.data].Elements.push(values);
@@ -80,7 +82,6 @@ export class AddElementComponent implements OnInit {
   }
     console.log(values);
     this.dialogRef.close();
-    
   }
 
   cancel() {

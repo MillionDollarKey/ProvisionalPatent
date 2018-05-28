@@ -1,0 +1,10 @@
+<div class="sortables" *ngFor="let action of Datas.subElement" >
+    <ul id='{{action.id}}'>{{action.title}}
+      <a (click)="addSubElement(action.id,action.order)">
+        <i class="material-icons">
+          add
+        </i>
+      </a>
+    </ul>
+    <app-sub-module *ngIf="action.subElement.length" [Datas]="action" [parentId]="parentId"></app-sub-module>
+  </div>

@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { AddElementType } from "../add-element-type";
 import { ElementHomeComponent } from "../element-home/element-home.component";
 import { MAT_DIALOG_DATA } from "@angular/material";
+import { UUID } from 'angular2-uuid';
 import { MatDialogRef, MatDialog, MatDialogTitle, MatDialogActions, MatDialogContent } from "@angular/material";
 @Component({
   selector: 'app-add-sub-element',
@@ -14,10 +15,11 @@ import { MatDialogRef, MatDialog, MatDialogTitle, MatDialogActions, MatDialogCon
 export class AddSubElementComponent implements OnInit {
   formgroup: any;
   ActionType: AddElementType;
-  parentId: number;
+  parentId: string;
   show: boolean;
   software: boolean;
   composition: boolean;
+  count : number;
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private route: ActivatedRoute, private router: Router, private dataSVC: DataService, public dialogRef: MatDialogRef<ElementHomeComponent>) { }
 
   ngOnInit() {
@@ -68,29 +70,68 @@ export class AddSubElementComponent implements OnInit {
 
   submit() {
     const val = this.formgroup.value;
+    let uuid = UUID.UUID();
     const values = new AddElementType(val.briefDescription, val.about,
-      val.novaltyRanking, val.flowChart, this.dataSVC.Count, val.title,
+      val.novaltyRanking, val.flowChart, uuid, val.title,
       val.figureNumber, val.figureName, val.elementNumberInFigure, val.features,
-      this.data[1], val.alternate, 2,val.strength, []);
-
+      this.data[1], val.alternate, this.data[2]+1,val.strength,[]);
+      let array : AddElementType[];
     if (this.dataSVC.editPatent) {
       console.log(this.data[0] + "this.data[0]");
       console.log(this.data[1] + "this.data[1]");
-      this.dataSVC.data[this.data[0]].Elements[this.data[1] - 1].subElement.push(values);
+      array =  this.dataSVC.data[this.data[0]].Elements
     }
 
     else {
-      this.dataSVC.data[this.dataSVC.CountPatent - 1].Elements[this.parentId - 1].subElement.push(values);
+      array = this.dataSVC.data[this.dataSVC.CountPatent - 1].Elements;
     }
-
-    //this.dataSVC.action[this.parentId].subElement = this.formgroup.values;
+    this.count = this.data[2]+1;
+    this.pushRecursive(array, this.parentId, this.count ,values);
+    
+    console.log(this.data[1]);
 
     console.log(this.dataSVC.data);
     this.dialogRef.close();
-    // this.router.navigate(['/elementHome']);
   }
   close() {
     this.dialogRef.close();
   }
 
+  pushRecursive(array,parent,order,values){
+    console.log("Array length in pushRecursive" + array.length);
+    for(let i =0 ; i < array.length ; i++){
+      
+      order = order+1
+
+      if(array[i].id == parent && array[i].order >=1){
+         array[i].subElement.push(values);
+         
+      }
+      else{
+
+        
+        
+        this.pushRecursive(array[i].subElement,parent,order,values);
+      }
+    }
+
+  }
+
 }
+
+/*
+function getNestedChildren(arr, parent) {
+    var out = []
+    for(var i in arr) {
+        if(arr[i].parent == parent) {
+            var children = getNestedChildren(arr, arr[i].id)
+
+            if(children.length) {
+                arr[i].children = children
+            }
+            out.push(arr[i])
+        }
+    }
+    return out
+}
+*/

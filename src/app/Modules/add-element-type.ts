@@ -4,17 +4,17 @@ export class AddElementType {
         public about: string,
         public novaltyRanking : number,
         public flowchart: boolean,
-        public id?: number,
+        public id?: string,
         public title?: string,
         public figureNumber?: number,
         public figureName?: string,
         public elementNumberInFigure?: number,
         public features?: string,  
-        public parentId?: number,
+        public parentId?: string,
         public alternate?: boolean,
         public order?: number,
         public elementStrength?: string,
-        public subElement?: AddElementType[]
+        public subElement?: AddElementType[] | null
     ) { }
 }
 
