@@ -23,7 +23,7 @@ export class EditPatentComponent implements OnInit {
   parentId : number ;
 
   ngOnInit() {
-    
+
     $(document).ready(function() {
       // $(".sortable").nestedSortable({
       //   forcePlaceholderSize: true,
@@ -41,13 +41,13 @@ export class EditPatentComponent implements OnInit {
       // });
 
     var li= $('.idClass').closest('li');
-    
+
     });
-    
- 
+
+
 
     this.dataSVC.editPatent = true;
-   
+
     this.index = this.route.snapshot.params['id'];
     this.parentId = this.index;
      this.dataSVC.data  = JSON.parse( localStorage.getItem('patents') );
@@ -71,15 +71,15 @@ export class EditPatentComponent implements OnInit {
         return true;
       }
     });
-     
+
   }
 
   buildList(parentElement, items) {
     var i, l, list, li;
     if( !items || !items.length ) { return; } // return here if there are no items to render
-    list = $("<li class='submenu-list'></li>").appendTo(parentElement); // create a list element within the parent element
+    list = $("<ul class='submenu-list'></ul>").appendTo(parentElement); // create a list element within the parent element
     for(i = 0, l = items.length ; i < l ; i++) {
-        li = $("<a></a>").text(items[i].title);  // make a list item element
+        li = $("<li></li>").html("<a>"+items[i].title+"</a>");  // make a list item element
         this.buildList(li, items[i].subElement);          // add its subpoints
         list.append(li);
     }
@@ -91,11 +91,11 @@ export class EditPatentComponent implements OnInit {
 
     //  var arraied = $('.sortable').nestedSortable('toArray', {startDepthCount: 0});
     //  	arraied = this.dump(arraied);
-		
+
 		// 	console.log(arraied)
-    
+
     // this.dataSVC.avail = true;
-    
+
     // this.dataSVC.software = false;
     // this.dataSVC.composition = false;
     // this.router.navigateByUrl('/');
@@ -116,7 +116,7 @@ export class EditPatentComponent implements OnInit {
         var value = arr[item];
 
         if(typeof(value) == 'object') { //If it is an array,
-         
+
           dumped_text += level_padding + "'" + arr[item] + "' ...\n";
           dumped_text += this.dump(value,level+1);
         } else {
@@ -142,8 +142,8 @@ export class EditPatentComponent implements OnInit {
     console.log( dialogConfigs.data);
     this.dialog.open(AddSubElementComponent, dialogConfigs);
    // this.router.navigate(["/addSubElement",parentID]);
-  
+
   }
 
- 
+
 }
