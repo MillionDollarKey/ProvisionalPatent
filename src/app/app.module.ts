@@ -23,7 +23,7 @@ import { Angular2Csv } from 'angular2-csv/Angular2-csv';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { SubModuleComponent } from './Modules/sub-module/sub-module.component';
 // import { TreeModule } from 'ng2-tree';
-
+import { TreeModule } from 'angular-tree-component';
 
 
 const routes: Routes = [
@@ -67,6 +67,7 @@ const routes: Routes = [
     MatDividerModule,
     MatSelectModule,
     MatAutocompleteModule,
+    TreeModule
     
   ],
   providers: [DataService],

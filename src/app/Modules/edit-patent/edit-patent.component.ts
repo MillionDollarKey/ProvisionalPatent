@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { DataService } from '../../Services/data.service';
 import {AddElementType,PatentType} from "../add-element-type";
 import { Router,ActivatedRoute} from "@angular/router";
@@ -6,7 +6,8 @@ import { NewPatentComponent } from '../new-patent/new-patent.component';
 import { AddElementComponent } from '../add-element/add-element.component';
 import {AddSubElementComponent} from '../add-sub-element/add-sub-element.component';
 import {MatDialog, MatDialogConfig , MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-
+import { ITreeState, ITreeOptions,TreeModel, TreeNode, IActionHandler, TreeComponent} from 'angular-tree-component';
+import { v4 } from 'uuid';
 declare var $ : any ;
 
 @Component({
@@ -143,6 +144,82 @@ export class EditPatentComponent implements OnInit {
     this.dialog.open(AddSubElementComponent, dialogConfigs);
    // this.router.navigate(["/addSubElement",parentID]);
 
+  }
+
+  //Added By haresh varsani 29052018
+  @ViewChild(TreeComponent)
+  private tree: TreeComponent;
+  state: ITreeState = {
+    expandedNodeIds: {
+      1: true,
+      2: true
+    },
+    hiddenNodeIds: {},
+    activeNodeIds: {},
+    
+  };
+
+  options: ITreeOptions = {
+    allowDrag: true,
+    getNodeClone: (node) => ({
+      ...node.data,
+      id: v4(),
+      name: `copy of ${node.data.name}`
+    }),
+    // actionMapping: {
+    //   mouse: {
+    //     drop: (tree:TreeModel, node:TreeNode, $event:any, {from, to}) => {
+    //       // use from to get the dragged node.
+    //       // use to.parent and to.index to get the drop location
+    //       // use TREE_ACTIONS.MOVE_NODE to invoke the original action
+    //       console.log(from);
+    //       console.log(to);
+    //       console.log(tree);
+    //       console.log(node);
+    //       return true;
+    //     }   
+    //   }
+    // }
+  };
+
+  nodes = [
+    {
+      id: 1,
+      name: 'root1',
+      children: [
+        { name: 'child1' },
+        { name: 'child2' }
+      ]
+    },
+    {
+      name: 'root2',
+      id: 2,
+      children: [
+        { name: 'child2.1', children: [] },
+        { name: 'child2.2', children: [
+          {name: 'grandchild2.2.1'}
+        ] }
+      ]
+    },
+    { name: 'root3' },
+    { name: 'root4', children: [] },
+    { name: 'root5', children: null }
+  ];
+
+  addNode() {
+    this.nodes.push({ name: 'another node' });
+    this.tree.treeModel.update();
+  }
+
+  onMoveNode($event) {
+    console.log($event.treeModel.nodes);
+    // console.log(
+    //   "Moved",
+    //   $event.node.name,
+    //   "to",
+    //   $event.to.parent.name,
+    //   "at index",
+    //   $event.to.index);
   }
 
 

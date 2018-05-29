@@ -25,6 +25,7 @@
     "@angular/platform-browser-dynamic": "^6.0.0",
     "@angular/router": "^6.0.0",
     "angular-drag-and-drop-lists": "^2.1.0",
+    "angular-tree-component": "^7.2.0",
     "angular2-csv": "^0.2.5",
     "angular2-json2csv": "^1.1.2",
     "angular2-uuid": "^1.1.1",

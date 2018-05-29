@@ -1,3 +1,12 @@
+<tree-root 
+          [state]="state" 
+          [options]="options" 
+          [focused]="true" 
+          [nodes]="nodes" 
+          (moveNode)="onMoveNode($event)"
+          #tree
+></tree-root>
+
 <mat-card style="margin: 3%">
   <div style="text-align: center">
     <mat-card-title> Patenet Generator </mat-card-title>
@@ -30,10 +39,10 @@
             </ul>
         </div> -->
     
-        <div class="menu-box">
+        <!-- <div class="menu-box">
           <ul class="menu-list sortable" id="pageContent"></ul>
-        </div>
-
+        </div> -->
+        
   </mat-card-content>
 
 </mat-card>
