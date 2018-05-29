@@ -14,6 +14,7 @@ import { MatDialogRef, MatDialog, MatDialogTitle, MatDialogActions, MatDialogCon
 })
 export class AddSubElementComponent implements OnInit {
   formgroup: any;
+  order : number;
   ActionType: AddElementType;
   parentId: string;
   show: boolean;
@@ -25,9 +26,11 @@ export class AddSubElementComponent implements OnInit {
   ngOnInit() {
     if (this.dataSVC.editPatent) {
       this.parentId = this.data[1];
+      this.order = this.data[2];
     }
     else {
-      this.parentId = this.data;
+      this.parentId = this.data[0];
+      this.order = this.data[1];
     }
 
     this.formgroup = new FormGroup({
@@ -74,7 +77,7 @@ export class AddSubElementComponent implements OnInit {
     const values = new AddElementType(val.briefDescription, val.about,
       val.novaltyRanking, val.flowChart, uuid, val.title,
       val.figureNumber, val.figureName, val.elementNumberInFigure, val.features,
-      this.data[1], val.alternate, this.data[2]+1,val.strength,[]);
+      this.parentId, val.alternate, this.order+1,val.strength,[]);
       let array : AddElementType[];
     if (this.dataSVC.editPatent) {
       console.log(this.data[0] + "this.data[0]");

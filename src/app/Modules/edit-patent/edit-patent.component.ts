@@ -23,30 +23,28 @@ export class EditPatentComponent implements OnInit {
   parentId : number ;
 
   ngOnInit() {
-    var options = {
-      opener: {
-        active: true,
-        as: 'html',  // or "class" or skip if using background-image url
-        close: '<i class="fa fa-minus red"></i>', // or 'fa fa-minus' or './imgs/Remove2.png'
-        open: '<i class="fa fa-plus"></i>', // or 'fa fa-plus' or './imgs/Add2.png'
-        openerCss: {
-          'display': 'inline-block', // Default value
-          'float': 'left', // Default value
-          'width': '18px',
-          'height': '18px',
-          'margin-left': '-35px',
-          'margin-right': '5px',
-          'background-position': 'center center', // Default value
-          'background-repeat': 'no-repeat' // Default value
-        },
-        // or like a class. Note that class can not rewrite default values. To rewrite defaults you have to do it through css object.
-        openerClass: 'yourClassName'
-      }
-    }
+    
+    $(document).ready(function() {
+      // $(".sortable").nestedSortable({
+      //   forcePlaceholderSize: true,
+      //   items: "li",
+      //   handle: "a",
+      //   placeholder: "menu-highlight",
+      //   listType: "ul",
+      //   opacity: 0.6,
+      //   isAllowed: function(item,parent){
+      //     console.log(item);
+      //     console.log(parent);
 
-    $(document).ready(function () {
-      $('.sortables').sortableLists(options);
-  });
+      //     return true;
+      //   }
+      // });
+
+    var li= $('.idClass').closest('li');
+    
+    });
+    
+ 
 
     this.dataSVC.editPatent = true;
    
@@ -57,18 +55,78 @@ export class EditPatentComponent implements OnInit {
      this.Datas = this.dataSVC.data[this.index].Elements;
      console.log(this.Datas);
      console.log( "parent id" + this.parentId);
+
+     this.buildList($('#pageContent').empty(), this.Datas);
+     $(".sortable").nestedSortable({
+      forcePlaceholderSize: true,
+      items: "li",
+      handle: "a",
+      placeholder: "menu-highlight",
+      listType: "ul",
+      opacity: 0.6,
+      isAllowed: function(item,parent){
+        console.log(item);
+        console.log(parent);
+
+        return true;
+      }
+    });
      
   }
 
+  buildList(parentElement, items) {
+    var i, l, list, li;
+    if( !items || !items.length ) { return; } // return here if there are no items to render
+    list = $("<li class='submenu-list'></li>").appendTo(parentElement); // create a list element within the parent element
+    for(i = 0, l = items.length ; i < l ; i++) {
+        li = $("<a></a>").text(items[i].title);  // make a list item element
+        this.buildList(li, items[i].subElement);          // add its subpoints
+        list.append(li);
+    }
+}
+
   done(){
+    var array = $('.sortable').nestedSortable('toArray');
+     console.log(array);
+
+    //  var arraied = $('.sortable').nestedSortable('toArray', {startDepthCount: 0});
+    //  	arraied = this.dump(arraied);
+		
+		// 	console.log(arraied)
     
-    this.dataSVC.avail = true;
+    // this.dataSVC.avail = true;
     
-    this.dataSVC.software = false;
-    this.dataSVC.composition = false;
-    this.router.navigateByUrl('/');
-    this.dataSVC.editPatent = false;
-     localStorage.setItem( "patents",JSON.stringify(this.dataSVC.data) );
+    // this.dataSVC.software = false;
+    // this.dataSVC.composition = false;
+    // this.router.navigateByUrl('/');
+    // this.dataSVC.editPatent = false;
+    //  localStorage.setItem( "patents",JSON.stringify(this.dataSVC.data) );
+  }
+
+  dump(arr,level?:any) {
+    var dumped_text = "";
+    if(!level) level = 0;
+
+    //The padding given at the beginning of the line.
+    var level_padding = "";
+    for(var j=0;j<level+1;j++) level_padding += "    ";
+
+    if(typeof(arr) == 'object') { //Array/Hashes/Objects
+      for(var item in arr) {
+        var value = arr[item];
+
+        if(typeof(value) == 'object') { //If it is an array,
+         
+          dumped_text += level_padding + "'" + arr[item] + "' ...\n";
+          dumped_text += this.dump(value,level+1);
+        } else {
+          dumped_text += level_padding + "'" + item + "' => \"" + value + "\"\n";
+        }
+      }
+    } else { //Strings/Chars/Numbers etc.
+      dumped_text = "===>"+arr+"<===("+typeof(arr)+")";
+    }
+    return dumped_text;
   }
 
   addElement(){

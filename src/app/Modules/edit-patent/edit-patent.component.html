@@ -15,17 +15,26 @@
   </div>
   <mat-card-content>
 
-    <div class="sortables menu-box" *ngFor="let action of Datas" >
-      <ul class="menu-list" id='{{action.id}}'>{{action.title}}
-        <a (click)="addSubElement(action.id,action.order)">
-          <i class="material-icons">
-            add
-          </i>
-        </a>
-      </ul>
-      <app-sub-module *ngIf="action.subElement.length" [Datas]="action" [parentId]="parentId"></app-sub-module>
-    </div>
+
+      <!-- <div class="menu-box">
+          <ul class="menu-list sortable">
+            <li class="submenu-list" *ngFor="let action of Datas" id="{{action.id}}" >
+              <a>
+                {{action.title}}
+                <i style="cursor: pointer;margin-left: 20px;" class="material-icons" (click)="addSubElement(action.id,action.order)">
+                  add
+                </i>
+              </a>
+              <app-sub-module *ngIf="action.subElement.length" [Datas]="action" [parentId]="parentId"></app-sub-module>
+            </li>
+            </ul>
+        </div> -->
+    
+        <div class="menu-box">
+          <ul class="menu-list sortable" id="pageContent"></ul>
+        </div>
 
   </mat-card-content>
 
 </mat-card>
+

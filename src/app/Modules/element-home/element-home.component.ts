@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { DataService } from '../../Services/data.service';
 import { Router } from '@angular/router';
 import {AddElementType} from "../add-element-type";
@@ -15,24 +15,35 @@ declare var $ : any ;
 })
 export class ElementHomeComponent implements OnInit {
 
-  datas  : AddElementType [];
+  @Input() Datas  : AddElementType [];
   constructor( private datasvc : DataService , private router : Router ,public dialog: MatDialog) { }
 
   ngOnInit() {
 
     
 
-    this.datas  = this.datasvc.data[this.datasvc.CountPatent-1].Elements;
+    this.Datas  = this.datasvc.data[this.datasvc.CountPatent-1].Elements;
     console.log(this.datasvc.data);
-   $(function(){
-     $(".sortables").sortable({
-       connectWith : ".sortables"
-     });
-   });
+
+
+    $(document).ready(function() {
+      $('.sortable').disableSelection().nestedSortable({
+        forcePlaceholderSize: true,
+        items: "li",
+        handle: "a",
+        placeholder: "menu-highlight",
+        listType: "ul",
+        opacity: 0.6
+      });
+      
+    });
+    
+
   }
 
   done(){
     
+    console.log($('.sortable').toArray()+ " array");
     this.datasvc.avail = true;
     this.datasvc.software = false;
     this.datasvc.composition = false;
@@ -46,9 +57,9 @@ export class ElementHomeComponent implements OnInit {
   //  this.router.navigate(['/addElement']);
   }
 
-  addSubElement(parentID ?: number){
+  addSubElement(parentID ?: string,order?: number){
     const dialogConfigs = new MatDialogConfig();
-    dialogConfigs.data = parentID;
+    dialogConfigs.data = [parentID,order];
     this.dialog.open(AddSubElementComponent, dialogConfigs);
    // this.router.navigate(["/addSubElement",parentID]);
   

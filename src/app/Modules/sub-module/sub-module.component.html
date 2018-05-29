@@ -1,10 +1,12 @@
-<div class="sortables" *ngFor="let action of Datas.subElement" >
-    <ul id='{{action.id}}'>{{action.title}}
-      <a (click)="addSubElement(action.id,action.order)">
-        <i class="material-icons">
-          add
-        </i>
-      </a>
-    </ul>
-    <app-sub-module *ngIf="action.subElement.length" [Datas]="action" [parentId]="parentId"></app-sub-module>
-  </div>
+
+<ul class="submenu-list">
+    <li  *ngFor="let action of Datas.subElement" id="{{action.id}}">
+      <a >{{action.title}}</a>
+          <i style="cursor: pointer;margin-left: 20px;" class="material-icons"  (click)="addSubElement(action.id,action.order)">
+            add
+          </i>
+                 
+      <app-sub-module *ngIf="action.subElement.length" [Datas]="action" [parentId]="parentId"></app-sub-module>
+    </li>
+  </ul>
+  

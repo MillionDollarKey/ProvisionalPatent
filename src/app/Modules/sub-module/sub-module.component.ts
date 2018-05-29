@@ -19,33 +19,50 @@ export class SubModuleComponent implements OnInit {
   constructor(public dialog: MatDialog ,private dataSVC : DataService,private route : ActivatedRoute,private router : Router ) { }
 
   ngOnInit() {
-    var options = {
-      opener: {
-        active: true,
-        as: 'html',  // or "class" or skip if using background-image url
-        close: '<i class="fa fa-minus red"></i>', // or 'fa fa-minus' or './imgs/Remove2.png'
-        open: '<i class="fa fa-plus"></i>', // or 'fa fa-plus' or './imgs/Add2.png'
-        openerCss: {
-          'display': 'inline-block', // Default value
-          'float': 'left', // Default value
-          'width': '18px',
-          'height': '18px',
-          'margin-left': '-35px',
-          'margin-right': '5px',
-          'background-position': 'center center', // Default value
-          'background-repeat': 'no-repeat' // Default value
-        },
-        // or like a class. Note that class can not rewrite default values. To rewrite defaults you have to do it through css object.
-        openerClass: 'yourClassName'
+
+    $(document).ready(function() {
+      $('.sortable').disableSelection().nestedSortable({
+        forcePlaceholderSize: true,
+        items: "li",
+        handle: "a",
+        placeholder: "menu-highlight",
+        listType: "ul",
+        opacity: 0.6
+      });
+      
+   // var array = $('.sortable').nestedSortable('toArray');
+    //console.log(this.dump(array));
+    });
+
+
+}
+
+
+dump(arr,level?:any) {
+  var dumped_text = "";
+  if(!level) level = 0;
+
+  //The padding given at the beginning of the line.
+  var level_padding = "";
+  for(var j=0;j<level+1;j++) level_padding += "    ";
+
+  if(typeof(arr) == 'object') { //Array/Hashes/Objects
+    for(var item in arr) {
+      var value = arr[item];
+
+      if(typeof(value) == 'object') { //If it is an array,
+        console.log("object", arr[item]);
+        dumped_text += level_padding + "'" + arr[item] + "' ...\n";
+        dumped_text += this.dump(value,level+1);
+      } else {
+        dumped_text += level_padding + "'" + item + "' => \"" + value + "\"\n";
       }
-    } 
-
-    $(document).ready(function () {
-      $('.sortables').sortableLists(options);
-  });
-    
+    }
+  } else { //Strings/Chars/Numbers etc.
+    dumped_text = "===>"+arr+"<===("+typeof(arr)+")";
   }
-
+  return dumped_text;
+}
   addSubElement(parentID ?: string,order?:number){
     const dialogConfigs = new MatDialogConfig();
     console.log(this.parentId + " in submodule");
