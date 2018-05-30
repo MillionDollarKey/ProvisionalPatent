@@ -5,6 +5,7 @@ import { Router,ActivatedRoute} from "@angular/router";
 import { NewPatentComponent } from '../new-patent/new-patent.component';
 import { AddElementComponent } from '../add-element/add-element.component';
 import {AddSubElementComponent} from '../add-sub-element/add-sub-element.component';
+import {SelectElementComponent} from '../select-element/select-element.component';
 import {MatDialog, MatDialogConfig , MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { ITreeState, ITreeOptions,TreeModel, TreeNode, IActionHandler, TreeComponent} from 'angular-tree-component';
 import { v4 } from 'uuid';
@@ -22,33 +23,11 @@ export class EditPatentComponent implements OnInit {
   @Input() Datas : AddElementType [];
   available : boolean  ;
   parentId : number ;
+  nodes : any ;
+  params : any ;
 
   ngOnInit() {
-
-    $(document).ready(function() {
-      // $(".sortable").nestedSortable({
-      //   forcePlaceholderSize: true,
-      //   items: "li",
-      //   handle: "a",
-      //   placeholder: "menu-highlight",
-      //   listType: "ul",
-      //   opacity: 0.6,
-      //   isAllowed: function(item,parent){
-      //     console.log(item);
-      //     console.log(parent);
-
-      //     return true;
-      //   }
-      // });
-
-    var li= $('.idClass').closest('li');
-
-    });
-
-
-
     this.dataSVC.editPatent = true;
-
     this.index = this.route.snapshot.params['id'];
     this.parentId = this.index;
      this.dataSVC.data  = JSON.parse( localStorage.getItem('patents') );
@@ -56,85 +35,37 @@ export class EditPatentComponent implements OnInit {
      this.Datas = this.dataSVC.data[this.index].Elements;
      console.log(this.Datas);
      console.log( "parent id" + this.parentId);
-
-     this.buildList($('#pageContent').empty(), this.Datas);
-     $(".sortable").nestedSortable({
-      forcePlaceholderSize: true,
-      items: "li",
-      handle: "a",
-      placeholder: "menu-highlight",
-      listType: "ul",
-      opacity: 0.6,
-      isAllowed: function(item,parent){
-        console.log(item);
-        console.log(parent);
-
-        return true;
-      }
-    });
-
-  }
-
-  buildList(parentElement, items) {
-    var i, l, list, li;
-    if( !items || !items.length ) { return; } // return here if there are no items to render
-    list = $("<ul class='submenu-list'></ul>").appendTo(parentElement); // create a list element within the parent element
-    for(i = 0, l = items.length ; i < l ; i++) {
-        li = $("<li></li>").html("<a>"+items[i].title+"</a>");  // make a list item element
-        this.buildList(li, items[i].subElement);          // add its subpoints
-        list.append(li);
-    }
+     this.nodes = this.Datas ;
 }
 
   done(){
-    var array = $('.sortable').nestedSortable('toArray');
-     console.log(array);
-
-    //  var arraied = $('.sortable').nestedSortable('toArray', {startDepthCount: 0});
-    //  	arraied = this.dump(arraied);
-
-		// 	console.log(arraied)
-
-    // this.dataSVC.avail = true;
-
-    // this.dataSVC.software = false;
-    // this.dataSVC.composition = false;
-    // this.router.navigateByUrl('/');
-    // this.dataSVC.editPatent = false;
-    //  localStorage.setItem( "patents",JSON.stringify(this.dataSVC.data) );
+    this.dataSVC.avail = true;
+    this.dataSVC.software = false;
+    this.dataSVC.composition = false;
+    this.router.navigateByUrl('/');
+    this.dataSVC.editPatent = false;
+     localStorage.setItem( "patents",JSON.stringify(this.dataSVC.data) );
   }
 
-  dump(arr,level?:any) {
-    var dumped_text = "";
-    if(!level) level = 0;
-
-    //The padding given at the beginning of the line.
-    var level_padding = "";
-    for(var j=0;j<level+1;j++) level_padding += "    ";
-
-    if(typeof(arr) == 'object') { //Array/Hashes/Objects
-      for(var item in arr) {
-        var value = arr[item];
-
-        if(typeof(value) == 'object') { //If it is an array,
-
-          dumped_text += level_padding + "'" + arr[item] + "' ...\n";
-          dumped_text += this.dump(value,level+1);
-        } else {
-          dumped_text += level_padding + "'" + item + "' => \"" + value + "\"\n";
-        }
-      }
-    } else { //Strings/Chars/Numbers etc.
-      dumped_text = "===>"+arr+"<===("+typeof(arr)+")";
-    }
-    return dumped_text;
-  }
 
   addElement(){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = this.parentId;
     this.dialog.open(AddElementComponent, dialogConfig);
-  //  this.router.navigate(['/addElement']);
+  }
+
+  dropDown(){
+    const dialogConfig1 = new MatDialogConfig();
+    dialogConfig1.data = this.index;
+    console.log(this.index);
+    let parameters = this.dialog.open(SelectElementComponent,dialogConfig1);
+    parameters.afterClosed().subscribe((value)=>{
+      this.params = value
+      console.log(this.params);
+      this.addSubElement(this.params[0],this.params[1]);
+      this.tree.treeModel.update();
+      this.tree.updateData();
+    });
   }
 
   addSubElement(parentID ?: string,order?:number){
@@ -142,8 +73,8 @@ export class EditPatentComponent implements OnInit {
     dialogConfigs.data = [this.parentId,parentID,order];
     console.log( dialogConfigs.data);
     this.dialog.open(AddSubElementComponent, dialogConfigs);
-   // this.router.navigate(["/addSubElement",parentID]);
-
+    this.tree.treeModel.update();
+    this.tree.updateData();
   }
 
   //Added By haresh varsani 29052018
@@ -182,32 +113,8 @@ export class EditPatentComponent implements OnInit {
     // }
   };
 
-  nodes = [
-    {
-      id: 1,
-      name: 'root1',
-      children: [
-        { name: 'child1' },
-        { name: 'child2' }
-      ]
-    },
-    {
-      name: 'root2',
-      id: 2,
-      children: [
-        { name: 'child2.1', children: [] },
-        { name: 'child2.2', children: [
-          {name: 'grandchild2.2.1'}
-        ] }
-      ]
-    },
-    { name: 'root3' },
-    { name: 'root4', children: [] },
-    { name: 'root5', children: null }
-  ];
-
   addNode() {
-    this.nodes.push({ name: 'another node' });
+    this.nodes.push({ id: "xghdfh" ,name: 'another node' });
     this.tree.treeModel.update();
   }
 

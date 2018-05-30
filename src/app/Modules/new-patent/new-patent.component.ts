@@ -24,7 +24,7 @@ export class NewPatentComponent implements OnInit {
     { value: 'process', viewValue: 'Process' },
     { value: 'mechanical', viewValue: 'Mechanical Invention' },
     { value: 'composition', viewValue: 'Composition of Matter' }
-  ]
+  ];
 
 
 

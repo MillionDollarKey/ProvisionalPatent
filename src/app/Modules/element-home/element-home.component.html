@@ -15,32 +15,8 @@
     <mat-card-title> Actions and Sub Actions </mat-card-title>
   </div>
   <mat-card-content>
-      <!-- <div class="">
-          <ol class="sortable" *ngFor="let action of Datas">
-            <li id='{{action.id}}'>{{action.title}}
-              <a (click)="addSubElement(action.id,action.order)">
-                <i class="material-icons">
-                  add
-                </i>
-              </a>
-            </li>
-            <app-sub-module *ngIf="action.subElement.length" [Datas]="action" [parentId]="parentId"></app-sub-module>
-          </ol>
-        </div> -->
-        
-      <div class="menu-box">
-          <ul class="menu-list sortable">
-            <li *ngFor="let action of Datas">
-              <a>
-                {{action.title}}
-                <i style="cursor: pointer;margin-left: 20px;" class="material-icons" (click)="addSubElement(action.id,action.order)">
-                  add
-                </i>
-              </a>
-              <app-sub-module *ngIf="action.subElement.length" [Datas]="action" [parentId]="parentId"></app-sub-module>
-            </li>
-            </ul>
-        </div>
+    <tree-root [state]="state" [options]="options" [focused]="true" [nodes]="nodes" (moveNode)="onMoveNode($event)" #tree></tree-root>
+
   </mat-card-content>
 
 </mat-card>

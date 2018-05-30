@@ -1,20 +1,20 @@
 export class AddElementType {
     constructor(
-        public briefDescription: string,
-        public about: string,
-        public novaltyRanking : number,
-        public flowchart: boolean,
-        public id?: string,
-        public title?: string,
+        public id: string,
+        public name: string | null,
+        public briefDescription?: string | null,
+        public about?: string | null,
+        public novaltyRanking?: number | null,
+        public flowchart?: boolean | null,
         public figureNumber?: number,
         public figureName?: string,
         public elementNumberInFigure?: number,
-        public features?: string,  
+        public features?: string,
         public parentId?: string,
         public alternate?: boolean,
         public order?: number,
         public elementStrength?: string,
-        public subElement?: AddElementType[] | null
+        public children?: AddElementType[] | null
     ) { }
 }
 

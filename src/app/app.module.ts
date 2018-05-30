@@ -4,7 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import {MatButtonModule,MatSelectModule,MatAutocompleteModule, MatCheckboxModule,MatToolbarModule,MatCardModule,MatDividerModule } from '@angular/material';
+import {MatButtonModule,MatSelectModule,MatAutocompleteModule, 
+  MatCheckboxModule,MatToolbarModule,MatCardModule,MatDividerModule } from '@angular/material';
 import {MatInputModule} from "@angular/material/input"
 import {MatFormFieldModule} from "@angular/material/form-field"
 import { NewPatentComponent } from './Modules/new-patent/new-patent.component';
@@ -24,6 +25,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { SubModuleComponent } from './Modules/sub-module/sub-module.component';
 // import { TreeModule } from 'ng2-tree';
 import { TreeModule } from 'angular-tree-component';
+import { SelectElementComponent } from './Modules/select-element/select-element.component';
 
 
 const routes: Routes = [
@@ -46,6 +48,7 @@ const routes: Routes = [
     ExportPatentComponent,
     EditDialogComponent,
     SubModuleComponent,
+    SelectElementComponent,
   ],
   imports: [
     
@@ -73,6 +76,6 @@ const routes: Routes = [
   providers: [DataService],
   bootstrap: [AppComponent],
   entryComponents: [EditDialogComponent, AddElementComponent,
-    AddSubElementComponent,NewPatentComponent]
+    AddSubElementComponent,NewPatentComponent,SelectElementComponent]
 })
 export class AppModule { }

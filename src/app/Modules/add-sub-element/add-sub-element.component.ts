@@ -14,21 +14,22 @@ import { MatDialogRef, MatDialog, MatDialogTitle, MatDialogActions, MatDialogCon
 })
 export class AddSubElementComponent implements OnInit {
   formgroup: any;
-  order : number;
+  order: any;
   ActionType: AddElementType;
   parentId: string;
   show: boolean;
   software: boolean;
   composition: boolean;
-  count : number;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private route: ActivatedRoute, private router: Router, private dataSVC: DataService, public dialogRef: MatDialogRef<ElementHomeComponent>) { }
+  count: number;
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, 
+  private route: ActivatedRoute, private router: Router, private dataSVC: DataService, 
+  public dialogRef: MatDialogRef<ElementHomeComponent>) { }
 
   ngOnInit() {
     if (this.dataSVC.editPatent) {
       this.parentId = this.data[1];
       this.order = this.data[2];
-    }
-    else {
+    } else {
       this.parentId = this.data[0];
       this.order = this.data[1];
     }
@@ -49,19 +50,17 @@ export class AddSubElementComponent implements OnInit {
 
     this.show = this.dataSVC.editPatent;
     if (this.show) {
-      if (this.dataSVC.data[this.data[0]].inventionType == "software") {
+      if (this.dataSVC.data[this.data[0]].inventionType === "software") {
         this.dataSVC.software = true;
       }
-      if (this.dataSVC.data[this.data[0]].inventionType == "composition") {
+      if (this.dataSVC.data[this.data[0]].inventionType === "composition") {
         this.dataSVC.composition = true;
       }
-    }
-
-    else {
-      if (this.dataSVC.data[this.dataSVC.CountPatent - 1].inventionType == "software") {
+    } else {
+      if (this.dataSVC.data[this.dataSVC.CountPatent - 1].inventionType === "software") {
         this.dataSVC.software = true;
       }
-      if (this.dataSVC.data[this.dataSVC.CountPatent - 1].inventionType == "composition") {
+      if (this.dataSVC.data[this.dataSVC.CountPatent - 1].inventionType === "composition") {
         this.dataSVC.composition = true;
       }
     }
@@ -74,8 +73,8 @@ export class AddSubElementComponent implements OnInit {
   submit() {
     const val = this.formgroup.value;
     let uuid = UUID.UUID();
-    const values = new AddElementType(val.briefDescription, val.about,
-      val.novaltyRanking, val.flowChart, uuid, val.title,
+    const values = new AddElementType( uuid, val.title,val.briefDescription, val.about,
+      val.novaltyRanking, val.flowChart,
       val.figureNumber, val.figureName, val.elementNumberInFigure, val.features,
       this.parentId, val.alternate, this.order+1,val.strength,[]);
       let array : AddElementType[];
@@ -89,7 +88,7 @@ export class AddSubElementComponent implements OnInit {
       array = this.dataSVC.data[this.dataSVC.CountPatent - 1].Elements;
     }
     this.count = this.data[2]+1;
-    this.pushRecursive(array, this.parentId, this.count ,values);
+    this.pushRecursive(array, this.parentId, this.count , values);
     
     console.log(this.data[1]);
 
@@ -100,21 +99,16 @@ export class AddSubElementComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  pushRecursive(array,parent,order,values){
+  pushRecursive (array, parent, order, values) {
     console.log("Array length in pushRecursive" + array.length);
-    for(let i =0 ; i < array.length ; i++){
+    for (let i = 0 ; i < array.length ; i++) {
       
-      order = order+1
+      order = order + 1;
 
-      if(array[i].id == parent && array[i].order >=1){
-         array[i].subElement.push(values);
-         
-      }
-      else{
-
-        
-        
-        this.pushRecursive(array[i].subElement,parent,order,values);
+      if (array[i].id === parent && array[i].order >= 1) {
+         array[i].children.push(values);
+      } else {
+        this.pushRecursive(array[i].children, parent, order, values);
       }
     }
 
@@ -122,19 +116,3 @@ export class AddSubElementComponent implements OnInit {
 
 }
 
-/*
-function getNestedChildren(arr, parent) {
-    var out = []
-    for(var i in arr) {
-        if(arr[i].parent == parent) {
-            var children = getNestedChildren(arr, arr[i].id)
-
-            if(children.length) {
-                arr[i].children = children
-            }
-            out.push(arr[i])
-        }
-    }
-    return out
-}
-*/

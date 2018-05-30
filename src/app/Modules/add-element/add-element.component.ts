@@ -68,8 +68,8 @@ export class AddElementComponent implements OnInit {
    
     let uuid = UUID.UUID();
     const val = this.formgroup.value;
-    const values = new AddElementType(val.briefDescription,val.about,
-    val.novaltyRanking,val.flowChart,uuid,val.title,
+    const values = new AddElementType(uuid,val.title,val.briefDescription,val.about,
+    val.novaltyRanking,val.flowChart,
     val.figureNumber,val.figureName,val.elementNumberInFigure, val.features,
     null,null,1,val.strength,[]);
     if(this.show){
