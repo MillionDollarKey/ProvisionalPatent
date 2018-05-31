@@ -38,7 +38,7 @@ export class EditPatentComponent implements OnInit {
      this.nodes = this.Datas ;
 }
 
-  done(){
+  done() {
     this.dataSVC.avail = true;
     this.dataSVC.software = false;
     this.dataSVC.composition = false;
@@ -48,39 +48,38 @@ export class EditPatentComponent implements OnInit {
   }
 
 
-  addElement(){
+  addElement() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = this.parentId;
-    let params = this.dialog.open(AddElementComponent, dialogConfig);
-    params.afterClosed().subscribe((vlaue)=>{
-      this.tree.treeModel.update();
-      this.onMoveNode(Event);
-    });
+   let params = this.dialog.open(AddElementComponent, dialogConfig);
+   params.afterClosed().subscribe((vlaue)=>{
+    this.tree.treeModel.update();
+    this.onMoveNode(Event);
+  });
   }
 
-  dropDown(){
+  dropDown() {
     const dialogConfig1 = new MatDialogConfig();
     dialogConfig1.data = this.index;
     console.log(this.index);
     let parameters = this.dialog.open(SelectElementComponent,dialogConfig1);
     parameters.afterClosed().subscribe((value)=>{
-      this.params = value;
+      this.params = value
       console.log(this.params);
       this.addSubElement(this.params[0],this.params[1]);
-      this.tree.treeModel.update();
+      
     });
   }
 
-  addSubElement(parentID ?: string,order?:number){
+  addSubElement(parentID ?: string, order?: number) {
     const dialogConfigs = new MatDialogConfig();
-    dialogConfigs.data = [this.parentId,parentID,order];
+    dialogConfigs.data = [this.parentId, parentID, order];
     console.log( dialogConfigs.data);
-    let params = this.dialog.open(AddSubElementComponent, dialogConfigs);
-    params.afterClosed().subscribe((vlaue)=>{
+     let params = this.dialog.open(AddSubElementComponent, dialogConfigs);
+     params.afterClosed().subscribe((vlaue)=>{
       this.tree.treeModel.update();
       this.onMoveNode(Event);
     });
-   
   }
 
   //Added By haresh varsani 29052018
@@ -120,7 +119,7 @@ export class EditPatentComponent implements OnInit {
   };
 
   addNode() {
-    this.nodes.push({ id: "xghdfh" ,name: 'another node' });
+    this.nodes.push({ id: "xghdfh" , name: 'another node' });
     this.tree.treeModel.update();
   }
 

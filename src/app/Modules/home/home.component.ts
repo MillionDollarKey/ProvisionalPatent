@@ -197,7 +197,20 @@ export class HomeComponent implements OnInit {
       t: "Reference",
       reference: this.data[index].reference
     });
-
+    this.PatentData.push({
+      id:"id",
+name:"name",
+about:"about",
+novaltyRanking:"novaltyRanking",
+figureNumber:"figureNumber",
+figureName:"figureName",
+elementNumberInFigure:"elementNumberInFigure",
+features:"features",
+parentId:"parentId",
+alternate:"alternate",
+order:"order",
+elementStrength:"elementStrength"
+    });
     const elementData = this.data[index].Elements;
 
     this.getPatent(elementData);
@@ -212,7 +225,20 @@ export class HomeComponent implements OnInit {
   getPatent(array) {
     for (let i = 0; i < array.length; i++) {
       console.log(array[i]['id']);
-      this.PatentData.push( array[i]);
+      this.PatentData.push({
+        "id":array[i].id,
+        "name":array[i].name,
+        "about" : array[i].about,
+        "novaltyRanking" : array[i].flowchart,
+        "figureNumber" : array[i].figureNumber,
+        "figureName" : array[i].figureName,
+        "elementNumberInFigure" : array[i].elementNumberInFigure,
+        "features": array[i].features,
+        "parentId" : array[i].parentId,
+        "alternate" : array[i].alternate,
+        "order" : array[i].order,
+        "elementStrength" : array[i].elementStrength
+      });
       this.getPatent(array[i].children);
     }
   }

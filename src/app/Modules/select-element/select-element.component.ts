@@ -20,7 +20,7 @@ export class SelectElementComponent implements OnInit {
   index: any;
   error = false;
   constructor(@Inject(MAT_DIALOG_DATA) public dialogData: any,
-    public dialogRef: MatDialogRef<EditPatentComponent>, private dataSVC: DataService,
+    public dialogRef: MatDialogRef<EditPatentComponent, ElementHomeComponent>, private dataSVC: DataService,
     private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
@@ -40,7 +40,7 @@ export class SelectElementComponent implements OnInit {
 
   }
 
-  cancel() {
+  close() {
     this.dialogRef.close();
   }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChild  } from '@angular/core';
 import { DataService } from '../../Services/data.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import {AddElementType} from "../add-element-type";
 import { NewPatentComponent } from '../new-patent/new-patent.component';
 import { AddElementComponent } from '../add-element/add-element.component';
@@ -22,11 +22,13 @@ export class ElementHomeComponent implements OnInit {
   index: any ;
   nodes: any ;
   params: any ;
-  constructor( private datasvc: DataService , private router: Router , public dialog: MatDialog) { }
+  constructor( private route:ActivatedRoute, private datasvc: DataService , private router: Router , public dialog: MatDialog) { }
 
   ngOnInit() {
+    this.index = this.datasvc.CountPatent - 1;
     this.Datas  = this.datasvc.data[this.datasvc.CountPatent - 1].Elements;
     console.log(this.datasvc.data);
+    this.nodes = this.Datas ;
 
   }
 
@@ -68,7 +70,7 @@ export class ElementHomeComponent implements OnInit {
     console.log(this.index);
     let parameters = this.dialog.open(SelectElementComponent, dialogConfig1);
     parameters.afterClosed().subscribe((value) => {
-      this.params = value
+      this.params = value;
       console.log(this.params);
       this.addSubElement(this.params[0], this.params[1]);
     });

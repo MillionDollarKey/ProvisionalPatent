@@ -1,6 +1,6 @@
 
 <ul class="submenu-list">
-    <li  *ngFor="let action of Datas.subElement" id="{{action.id}}">
+    <li  *ngFor="let action of Datas.children" id="{{action.id}}">
       <a >{{action.name}}</a>
           <i style="cursor: pointer;margin-left: 20px;" class="material-icons"  (click)="addSubElement(action.id,action.order)">
             add
