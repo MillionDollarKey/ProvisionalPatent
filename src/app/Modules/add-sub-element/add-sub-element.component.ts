@@ -35,16 +35,16 @@ export class AddSubElementComponent implements OnInit {
     }
 
     this.formgroup = new FormGroup({
-      title: new FormControl('', [Validators.required]),
+      title: new FormControl('', []),
       briefDescription: new FormControl('', [Validators.required]),
-      figureNumber: new FormControl('', [Validators.required]),
-      figureName: new FormControl('', [Validators.required]),
-      elementNumberInFigure: new FormControl('', [Validators.required]),
-      features: new FormControl('', [Validators.required]),
-      alternate: new FormControl('', [Validators.required]),
-      flowChart: new FormControl('', [Validators.required]),
-      novaltyRanking: new FormControl('', [Validators.required]),
-      strength: new FormControl('',[Validators.required]),
+      figureNumber: new FormControl('', []),
+      figureName: new FormControl('', []),
+      elementNumberInFigure: new FormControl('', []),
+      features: new FormControl('', []),
+      alternate: new FormControl('', []),
+      flowChart: new FormControl('', []),
+      novaltyRanking: new FormControl('', []),
+      strength: new FormControl('', []),
       about: new FormControl('', [Validators.required, Validators.maxLength(1000)])
     });
 

@@ -12,7 +12,7 @@
     <br>
     <p>Briefly describe what action the invention performs, such as "Generates an encryption key"</p>
     <mat-form-field>
-      <input matInput placeholder="Brief Description" style="width:100%" [formControl]="formgroup.controls['briefDescription']">
+      <input matInput placeholder="Brief Description *" style="width:100%" [formControl]="formgroup.controls['briefDescription']">
 
       <mat-error *ngIf="formgroup.controls['briefDescription'].hasError('required')">
         Brief Description is
@@ -21,38 +21,29 @@
     </mat-form-field>
 
     <br>
-<div *ngIf="!software">
-  <div *ngIf="!composition">
+
     <br>
     <p>What physical component performs that action? If your invention is software and the action is done by the computer, just
-      leave the component field blank.</p>
+      add a unique name.</p>
     <mat-form-field>
       <input matInput placeholder="Title" style="width:100%" [formControl]="formgroup.controls['title']">
-      <mat-error *ngIf="formgroup.controls['title'].hasError('required')">
-        Title is
-        <strong>required</strong>
-      </mat-error>
+      
     </mat-form-field>
-
+    <div *ngIf="!software">
+      <div *ngIf="!composition">
     <br>
 
     <p>If you will include a figure that shows the component, enter the Name of figure here.</p>
     <mat-form-field>
       <input type='text' matInput placeholder="Reference" style="width:100%" [formControl]="formgroup.controls['figureName']">
-      <mat-error *ngIf="formgroup.controls['figureName'].hasError('required')">
-        Figure Name is
-        <strong>required</strong>
-      </mat-error>
+      
     </mat-form-field>
     <br>
 
     <p>If you will include a figure that shows the component, enter the Number of Component in figure here.</p>
     <mat-form-field>
       <input type='number' matInput placeholder="Reference" style="width:100%" [formControl]="formgroup.controls['elementNumberInFigure']">
-      <mat-error *ngIf="formgroup.controls['elementNumberInFigure'].hasError('required')">
-        Element number is
-        <strong>required</strong>
-      </mat-error>
+     
     </mat-form-field>
 
     <br>
@@ -60,10 +51,7 @@
     <p>Describe any unique and important features of the component. this is not needed if the component is computer.</p>
     <mat-form-field>
       <textarea matInput placeholder="Problem Definiton" style="width:100%" [formControl]="formgroup.controls['features']"></textarea>
-      <mat-error *ngIf="formgroup.controls['features'].hasError('required')">
-        Features is
-        <strong>required</strong>
-      </mat-error>
+      
     </mat-form-field>
 
     <br>
@@ -71,10 +59,7 @@
     <p>Describe any unique and important features of the component. this is not needed if the component is computer.</p>
     <mat-form-field>
       <textarea matInput placeholder="Problem Definiton" style="width:100%" [formControl]="formgroup.controls['features']"></textarea>
-      <mat-error *ngIf="formgroup.controls['features'].hasError('required')">
-        Features is
-        <strong>required</strong>
-      </mat-error>
+     
     </mat-form-field>
 
     
@@ -91,17 +76,14 @@
       <p>Strength of Element.</p>
       <mat-form-field>
         <input type='text' matInput placeholder="Strength" style="width:100%" [formControl]="formgroup.controls['strength']">
-        <mat-error *ngIf="formgroup.controls['strength'].hasError('required')">
-          Element number is
-          <strong>required</strong>
-        </mat-error>
+  
       </mat-form-field>
     </div>
     <br>
     <br>
     <p>Add an aditional details about this action or component.</p>
     <mat-form-field>
-      <textarea matInput placeholder="The Invention" style="width:100%" [formControl]="formgroup.controls['about']"></textarea>
+      <textarea matInput placeholder="The Invention *" style="width:100%" [formControl]="formgroup.controls['about']"></textarea>
       <mat-error *ngIf="formgroup.controls['about'].hasError('required')">
         about is
         <strong>required</strong>
@@ -111,7 +93,7 @@
 
   </mat-dialog-content>
   <mat-dialog-actions style="text-align: center">
-    <button mat-raised-button color='primary' type="submit">Submit</button>
+    <button mat-raised-button color='primary' type="submit" [disabled]="!formgroup.valid">Submit</button>
     <button mat-raised-button color='primary' (click)="close()"> Cancel </button>
   </mat-dialog-actions>
 </form>

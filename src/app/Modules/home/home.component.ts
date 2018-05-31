@@ -39,6 +39,13 @@ export class HomeComponent implements OnInit {
 
   }
 
+  deletePatent(index) {
+    delete this.data[index];
+    localStorage.setItem( 'patents', JSON.stringify(this.data) );
+    this.ngOnInit();
+
+  }
+
   exportPatent(index) {
     
     this.PatentData.push({
