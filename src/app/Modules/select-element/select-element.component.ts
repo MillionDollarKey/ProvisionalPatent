@@ -45,13 +45,14 @@ export class SelectElementComponent implements OnInit {
   }
 
   search(array, name) {
-
-    for (let i = 0; i < this.data.length; i++) {
-      if (array[i].name === name) {
-        return [array[i].id, array[i].order];
-      } else {
-        if (array[i].children.length > 0) {
-          return this.search(array[i].children, name);
+    if (array) {
+      for (let i = 0; i < array.length; i++) {
+        if (array[i].name === name) {
+          return [array[i].id, array[i].order];
+        }
+        let found = this.search(array[i].children, name);
+        if (found) {
+          return found;
         }
       }
     }
