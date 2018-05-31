@@ -41,19 +41,24 @@ export class ElementHomeComponent implements OnInit {
 
   addElement() {
     const dialogConfig = new MatDialogConfig();
-    this.dialog.open(AddElementComponent, dialogConfig);
+     let params = this.dialog.open(AddElementComponent, dialogConfig);
+    params.afterClosed().subscribe((vlaue)=>{
+      this.tree.treeModel.update();
+      this.onMoveNode(Event);
+    });
     this.tree.treeModel.update();
-    this.tree.updateData();
 
   }
 
   addSubElement(parentID ?: string, order?: number) {
     const dialogConfigs = new MatDialogConfig();
     dialogConfigs.data = [parentID, order];
-    this.dialog.open(AddSubElementComponent, dialogConfigs);
-   // this.router.navigate(["/addSubElement",parentID]);
+    let params = this.dialog.open(AddSubElementComponent, dialogConfigs);
+    params.afterClosed().subscribe((vlaue)=>{
+      this.tree.treeModel.update();
+      this.onMoveNode(Event);
+    });
    this.tree.treeModel.update();
-   this.tree.updateData();
 
   }
 

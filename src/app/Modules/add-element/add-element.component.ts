@@ -41,6 +41,7 @@ export class AddElementComponent implements OnInit {
     });
 
     this.show = this.dataSVC.editPatent;
+    console.log(this.data);
     if(this.show) {
       if(this.dataSVC.data[this.data].inventionType == "software"){
         this.dataSVC.software = true;

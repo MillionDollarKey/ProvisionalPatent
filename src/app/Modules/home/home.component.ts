@@ -213,9 +213,7 @@ export class HomeComponent implements OnInit {
     for (let i = 0; i < array.length; i++) {
       console.log(array[i]['id']);
       this.PatentData.push( array[i]);
-      for (let j = 0 ; j < array[i].children.length; j++) {
-        this.PatentData.push(array[i].children[j]);
-      }
+      this.getPatent(array[i].children);
     }
   }
 

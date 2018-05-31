@@ -51,7 +51,11 @@ export class EditPatentComponent implements OnInit {
   addElement(){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = this.parentId;
-    this.dialog.open(AddElementComponent, dialogConfig);
+    let params = this.dialog.open(AddElementComponent, dialogConfig);
+    params.afterClosed().subscribe((vlaue)=>{
+      this.tree.treeModel.update();
+      this.onMoveNode(Event);
+    });
   }
 
   dropDown(){
@@ -60,11 +64,10 @@ export class EditPatentComponent implements OnInit {
     console.log(this.index);
     let parameters = this.dialog.open(SelectElementComponent,dialogConfig1);
     parameters.afterClosed().subscribe((value)=>{
-      this.params = value
+      this.params = value;
       console.log(this.params);
       this.addSubElement(this.params[0],this.params[1]);
       this.tree.treeModel.update();
-      this.tree.updateData();
     });
   }
 
@@ -72,9 +75,12 @@ export class EditPatentComponent implements OnInit {
     const dialogConfigs = new MatDialogConfig();
     dialogConfigs.data = [this.parentId,parentID,order];
     console.log( dialogConfigs.data);
-    this.dialog.open(AddSubElementComponent, dialogConfigs);
-    this.tree.treeModel.update();
-    this.tree.updateData();
+    let params = this.dialog.open(AddSubElementComponent, dialogConfigs);
+    params.afterClosed().subscribe((vlaue)=>{
+      this.tree.treeModel.update();
+      this.onMoveNode(Event);
+    });
+   
   }
 
   //Added By haresh varsani 29052018
