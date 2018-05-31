@@ -17,33 +17,35 @@
     <mat-card-title> Patent List </mat-card-title>
     <mat-card-subtitle>View Edit and Export your Patent</mat-card-subtitle>
     <mat-card-content>
-      <table style="width: 100%">
+      <table >
         <tr>
           <th>Title of invention</th>
           <th>Actions</th>
         </tr>
         <tr *ngFor="let db of data , let i = index">
-          <span *ngIf="data[i] != null">
-            <td> {{db.inventionTitle}}</td>
+          <!-- <p *ngIf="data[i] != null" style="width: 100%"> -->
+            <td > {{db.inventionTitle}}</td>
             <td>
-              <a color="primary" (click)="editPatent(i)">
-                <i class="material-icons">
+              <a color="primary" (click)="editPatent(i)"  style="margin-right: 20px;">  
+                <i class="material-icons" title="Edit">
                   border_color
-                </i>
+                </i> 
               </a>
 
-              <a color="primary" (click)="exportPatent(i)">
-                <i class="material-icons">
+              <a color="primary" (click)="exportPatent(i)"  style="margin-right: 20px;">
+                <i class="material-icons" title="Export">
                   save_alt
                 </i>
+                
               </a>
-              <a color="primary" (click)="deletePatent(i)">
-                <i class="material-icons">
+              <a color="primary" (click)="deletePatent(i)"  style="margin-right: 20px;">
+                <i class="material-icons" title="Delete">
                   delete
                 </i>
+                
               </a>
             </td>
-          </span>
+          <!-- </p> -->
         </tr>
       </table>
     </mat-card-content>
